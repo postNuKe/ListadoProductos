@@ -45,6 +45,7 @@ public class LoadPage {
     private static String findUri = "";
     
     private static String findSpecial = "";
+    private static String findSpecialPrice = "";
     
     private static Double pricePlus = 1.0;
     
@@ -64,6 +65,7 @@ public class LoadPage {
         findPrice = "";
         findUri = "";
         findSpecial = "";  
+        findSpecialPrice = "";
         
         pricePlus = 1.0;
         
@@ -107,6 +109,9 @@ public class LoadPage {
     public void setFindSpecial(String tFindSpecial){
         findSpecial = tFindSpecial;
     }         
+    public void setFindSpecialPrice(String tFindSpecialPrice){
+        findSpecialPrice = tFindSpecialPrice;
+    }         
 
     public void setRStrings(List<String> array){
         rStrings = array;
@@ -146,10 +151,14 @@ public class LoadPage {
                     myProduct.setShopCountry(country);
                     myProduct.setName(writeName(product.getFirstByXPath(findName)));
                     myProduct.setBrand(getBrand(getProductName(product.getFirstByXPath(findName))));
-                    myProduct.setPrice(writePrice(product.getFirstByXPath(findPrice)));
                     myProduct.setUri(writeUri(product.getFirstByXPath(findUri)));
                     myProduct.setId();
                     myProduct.setIsSpecial(writeSpecial(product.getFirstByXPath(findSpecial)));
+                    if(myProduct.getIsSpecial()){
+                        myProduct.setPrice(writePrice(product.getFirstByXPath(findSpecialPrice)));
+                    }else{
+                        myProduct.setPrice(writePrice(product.getFirstByXPath(findPrice)));
+                    }
                     //System.out.println(myProduct.toString());
 
                     productList.add(myProduct);
@@ -266,19 +275,19 @@ public class LoadPage {
             var = finalVar;
         }
         //System.out.print(" || " + ePrice.getVisibleText());    
-        System.out.print(" || " + var);
+        System.out.println(" || " + var);
         return var;
     }
     public String writeUri(HtmlElement eUri){        
         String var = eUri.getAttribute("href");
-        System.out.println(" || " + var);   
+        System.out.print(" || " + var);   
         return var;
     }
 
     public boolean writeSpecial(HtmlElement e){
         boolean var = false;
         if (e != null){
-            System.out.println(" || OFERTA");
+            System.out.print(" || OFERTA ");
             var = true;
         }
         return var;

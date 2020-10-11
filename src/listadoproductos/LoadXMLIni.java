@@ -33,6 +33,7 @@ import java.util.Iterator;
  */
 public final class LoadXMLIni {
     private static String LISTADO_PRODUCTOS_XML = "./listado.xml";
+    private static String LISTADO_PRODUCTOS_OFERTA_XML = "./ofertas.xml";
     private static Date date = new Date();
     private static ArrayList<String> listPages = new ArrayList<String>();
     private static ArrayList<Brand> brands = new ArrayList<Brand>();
@@ -140,6 +141,7 @@ public final class LoadXMLIni {
                         lPage.setFindPrice(eFind.getElementsByTagName("price").item(0).getTextContent());        
                         lPage.setFindUri(eFind.getElementsByTagName("uri").item(0).getTextContent());                  
                         lPage.setFindSpecial(eFind.getElementsByTagName("special").item(0).getTextContent());
+                        lPage.setFindSpecialPrice(eFind.getElementsByTagName("specialPrice").item(0).getTextContent());
                         Node nProduct = eFind.getElementsByTagName("special").item(0);
                         Element eProduct = (Element) nProduct;
                     }
