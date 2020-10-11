@@ -73,7 +73,7 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
     
     <shop name="All4Flavours" country="spain">
         <baseUri>https://www.all4flavours.com/</baseUri>
-        <pricePlus>1.21</pricePlus>
+        <!--<pricePlus>1.21</pricePlus>-->
         <find>
             <product>//article/div[@class='product-description']</product>
             <name>.//h3[@class='h3 product-title']/a</name>
