@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<listado>
+    <productList>
+        <product id="https://www.all4flavours.com/tabacchificio-30/5912-759-balkan-special-blend-20-ml-tabacchificio-30.html">
+            <name>759 Balkan Special Blend 20 ml</name>
+            <brand>TABACCHIFICIO 3.0</brand>
+            <uri>https://www.all4flavours.com/tabacchificio-30/5912-759-balkan-special-blend-20-ml-tabacchificio-30.html</uri>
+            <price>12.90 €</price>
+            <isSpecial>false</isSpecial>
+            <shopName>All4Flavours</shopName>
+            <shopCountry>spain</shopCountry>
+            <shopUri>https://www.all4flavours.com/</shopUri>
+        </product>
+        <product id="https://www.all4flavours.com/tabacchificio-30/5921-aromoniosa-cremosa-cigar-blend-20-ml-tabacchificio-30.html">
+            <name>Aromoniosa Cremosa Cigar Blend 20 ml</name>
+            <brand>TABACCHIFICIO 3.0</brand>
+            <uri>https://www.all4flavours.com/tabacchificio-30/5921-aromoniosa-cremosa-cigar-blend-20-ml-tabacchificio-30.html</uri>
+            <price>8.50 €</price>
+            <isSpecial>false</isSpecial>
+            <shopName>All4Flavours</shopName>
+            <shopCountry>spain</shopCountry>
+            <shopUri>https://www.all4flavours.com/</shopUri>
+        </product>
+    </productList>
+    <date>16/10/2020 16:15:38</date>
+</listado>

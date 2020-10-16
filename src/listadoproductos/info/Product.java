@@ -152,4 +152,15 @@ public class Product {
         return sb.toString();
     }
     
+    public String toStringPrint() {    
+        final StringBuilder sb = new StringBuilder("");
+        sb.append(this.shopName).append(" | ");
+        sb.append(this.brand).append(" | ");
+        sb.append(this.name).append(" | ");
+        sb.append(this.price).append(" | ");
+        sb.append(this.uri).append(" | ");
+        
+        //System.out.println(sb.toString());
+        return sb.toString();
+    }
 }

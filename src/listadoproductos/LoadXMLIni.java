@@ -33,7 +33,6 @@ import java.util.Iterator;
  */
 public final class LoadXMLIni {
     private static String LISTADO_PRODUCTOS_XML = "./listado.xml";
-    private static String LISTADO_PRODUCTOS_OFERTA_XML = "./ofertas.xml";
     private static Date date = new Date();
     private static ArrayList<String> listPages = new ArrayList<String>();
     private static ArrayList<Brand> brands = new ArrayList<Brand>();
