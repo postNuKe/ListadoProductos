@@ -52,7 +52,7 @@ public class ListadoProductos {
         String localListado = args[0];
         
         
-        //new LoadXMLIni(localListado);
+        new LoadXMLIni(localListado);
         
         //averiguamos el path local para empezar a comparar los archivos
         Path path = Paths.get(localListado);

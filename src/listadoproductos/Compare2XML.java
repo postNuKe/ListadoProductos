@@ -60,7 +60,7 @@ public class Compare2XML {
             if (nDocNewProduct.getNodeType() == Node.ELEMENT_NODE) {
                 Element eDocNewProduct = (Element) nDocNewProduct;
                 expression = "/listado/productList/product[@id=" + "'" + eDocNewProduct.getAttribute("id") + "'" + "][1]";
-                System.out.println(eDocNewProduct.getAttribute("id"));
+                //System.out.println(eDocNewProduct.getAttribute("id"));
                 Element nDocOldProduct = (Element) xPath.compile(expression).evaluate(docOldXML, XPathConstants.NODE);
                 //existe el producto en el viejo
                 if(nDocOldProduct != null){

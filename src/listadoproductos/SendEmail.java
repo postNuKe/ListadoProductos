@@ -15,7 +15,7 @@ public class SendEmail {
     private static final String PASSWORD = "";
 
     private static final String EMAIL_FROM = "organicosvapeo@gmail.com";
-    private static final String EMAIL_TO = "dmacias2000@gmail.com, email_2@gmail.com";
+    private static final String EMAIL_TO = "dmacias2000@gmail.com, galdeanomedinaroberto@gmail.com";
     private static final String EMAIL_TO_CC = "";
 
     private static final String EMAIL_SUBJECT = "Organicos Vapeo: Novedades y Ofertas";
