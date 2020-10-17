@@ -15,7 +15,7 @@ public class SendEmail {
     private static final String PASSWORD = "";
 
     private static final String EMAIL_FROM = "organicosvapeo@gmail.com";
-    private static final String EMAIL_TO = "dmacias2000@gmail.com, galdeanomedinaroberto@gmail.com";
+    private static final String EMAIL_TO = "dmacias2000@gmail.com,galdeanomedinaroberto@gmail.com";//,galdeanomedinaroberto@gmail.com";
     private static final String EMAIL_TO_CC = "";
 
     private static final String EMAIL_SUBJECT = "Organicos Vapeo: Novedades y Ofertas";
@@ -66,14 +66,13 @@ public class SendEmail {
             msg.setContent(mp);
 
 
-			SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
+            SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
 
 			// connect
             t.connect(SMTP_SERVER, USERNAME, PASSWORD);
 
 			// send
-            if(aNewProducts.size() > 0 || aSpecialProducts.size() > 0)
-                t.sendMessage(msg, msg.getAllRecipients());
+            t.sendMessage(msg, msg.getAllRecipients());
 
             System.out.println("Response: " + t.getLastServerResponse());
 

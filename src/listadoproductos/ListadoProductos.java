@@ -23,8 +23,8 @@ import org.springframework.util.FileCopyUtils;
  * @author user
  */
 public class ListadoProductos {
-    private static String LISTADO_PRODUCTOS_NEW = "./listado_new_products.xml";
-    private static String LISTADO_PRODUCTOS_NEW_SPECIAL = "./listado_new_products_special.xml";
+    private static String LISTADO_PRODUCTOS_NEW = "listado_new_products.xml";
+    private static String LISTADO_PRODUCTOS_NEW_SPECIAL = "listado_new_products_special.xml";
     
     /** nombre del fListado anterior para comparar con el nuevo */
     private static String LISTADO_PRODUCTOS_PREVIOUS_XML = "listado_previous.xml";
@@ -90,25 +90,28 @@ public class ListadoProductos {
             formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");   
             //System.out.println(formatter.format(date));             
             listado.setDate(formatter.format(date));
-            listado.setProductList(compareXML.getNewProducts());   
+            listado.setProductList(compareXML.getNewProducts()); 
+            
             //listado.setListPages(listPages);
             // Write to File
-            m.marshal(listado, new File(LISTADO_PRODUCTOS_NEW));    
+            m.marshal(listado, new File(path.getParent().toString().concat("/").concat(LISTADO_PRODUCTOS_NEW)));    
             
             listado = new Listado();
             listado.setDate(formatter.format(date));
             listado.setProductList(compareXML.getSpecialProducts());   
             //listado.setListPages(listPages);
             // Write to File
-            m.marshal(listado, new File(LISTADO_PRODUCTOS_NEW_SPECIAL));
+            m.marshal(listado, new File(path.getParent().toString().concat("/").concat(LISTADO_PRODUCTOS_NEW_SPECIAL)));
             
             //mandamos el correo
-            SendEmail sendEmail = new SendEmail(compareXML.getNewProducts(), compareXML.getSpecialProducts()); //
+            if(compareXML.getNewProducts().size() > 0 || compareXML.getSpecialProducts().size() > 0){
+                SendEmail sendEmail = new SendEmail(compareXML.getNewProducts(), compareXML.getSpecialProducts()); //
+            }
             
-        }else{
-            //al no existir el anterior listado, pues copiamos el actual
-            FileCopyUtils.copy(fListado, fListadoPrevious);
         }
+        //copiamos el nuevo en el viejo
+        FileCopyUtils.copy(fListado, fListadoPrevious);
+        
         
         if(args.length > 1){//si solo ponemos la ruta del fListado en local que no de error
             String remoteListado = args[1];

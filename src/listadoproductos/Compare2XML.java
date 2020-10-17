@@ -37,7 +37,8 @@ public class Compare2XML {
     
     public Compare2XML(File newXML, File oldXML) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
         
-        
+        newProducts = new ArrayList<>();
+        specialProducts = new ArrayList<>();
         
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
