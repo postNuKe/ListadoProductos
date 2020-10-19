@@ -152,7 +152,7 @@ public class Product {
         return sb.toString();
     }
     
-    public String toStringPrint() {    
+    public String toStringEmail() {    
         final StringBuilder sb = new StringBuilder("");
         sb.append(this.shopName).append(" | ");
         sb.append(this.brand).append(" | ");

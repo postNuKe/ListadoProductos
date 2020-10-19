@@ -52,12 +52,13 @@ public class ListadoProductos {
         String localListado = args[0];
         
         
-        new LoadXMLIni(localListado);
+        //LoadXMLIni loadXMLIni = new LoadXMLIni(localListado);
         
         //averiguamos el path local para empezar a comparar los archivos
         Path path = Paths.get(localListado);
+        String localPath = path.getParent().toString().concat("/");
         File fListado = new File(localListado);
-        String localListadoPrevious = path.getParent().toString().concat("/").concat(LISTADO_PRODUCTOS_PREVIOUS_XML);
+        String localListadoPrevious = localPath.concat(LISTADO_PRODUCTOS_PREVIOUS_XML);
         File fListadoPrevious = new File(localListadoPrevious);
         //System.out.println(fListadoPrevious.toString());
         if(fListadoPrevious.exists() && !fListadoPrevious.isDirectory()) { 
@@ -94,23 +95,27 @@ public class ListadoProductos {
             
             //listado.setListPages(listPages);
             // Write to File
-            m.marshal(listado, new File(path.getParent().toString().concat("/").concat(LISTADO_PRODUCTOS_NEW)));    
+            m.marshal(listado, new File(localPath.concat(LISTADO_PRODUCTOS_NEW)));    
             
             listado = new Listado();
             listado.setDate(formatter.format(date));
             listado.setProductList(compareXML.getSpecialProducts());   
             //listado.setListPages(listPages);
             // Write to File
-            m.marshal(listado, new File(path.getParent().toString().concat("/").concat(LISTADO_PRODUCTOS_NEW_SPECIAL)));
+            m.marshal(listado, new File(localPath.concat(LISTADO_PRODUCTOS_NEW_SPECIAL)));
             
             //mandamos el correo
             if(compareXML.getNewProducts().size() > 0 || compareXML.getSpecialProducts().size() > 0){
-                SendEmail sendEmail = new SendEmail(compareXML.getNewProducts(), compareXML.getSpecialProducts()); //
+                Email email = new Email();
+                SendEmail sendEmail = new SendEmail(
+                        email.getEmailsToString()
+                        , compareXML.getNewProducts()
+                        , compareXML.getSpecialProducts()); //
             }
             
         }
         //copiamos el nuevo en el viejo
-        FileCopyUtils.copy(fListado, fListadoPrevious);
+        //FileCopyUtils.copy(fListado, fListadoPrevious);
         
         
         if(args.length > 1){//si solo ponemos la ruta del fListado en local que no de error

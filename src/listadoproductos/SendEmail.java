@@ -15,13 +15,13 @@ public class SendEmail {
     private static final String PASSWORD = "";
 
     private static final String EMAIL_FROM = "organicosvapeo@gmail.com";
-    private static final String EMAIL_TO = "dmacias2000@gmail.com,galdeanomedinaroberto@gmail.com";//,galdeanomedinaroberto@gmail.com";
+    private static final String EMAIL_TO = "email@gmail.com,email2@gmail.com";
     private static final String EMAIL_TO_CC = "";
 
     private static final String EMAIL_SUBJECT = "Organicos Vapeo: Novedades y Ofertas";
     private static final String EMAIL_TEXT = "Hello Java Mail \n ABC123";
 
-    public SendEmail(ArrayList<Product> aNewProducts, ArrayList<Product> aSpecialProducts) {
+    public SendEmail(String emails, ArrayList<Product> aNewProducts, ArrayList<Product> aSpecialProducts) {
 
         Properties prop = System.getProperties();
         prop.put("mail.smtp.auth", "false");
@@ -34,7 +34,7 @@ public class SendEmail {
             msg.setFrom(new InternetAddress(EMAIL_FROM));
 
             msg.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(EMAIL_TO, false));
+                    InternetAddress.parse(emails, false));
 
             msg.setSubject(EMAIL_SUBJECT);
 
@@ -43,12 +43,12 @@ public class SendEmail {
             String txt = "NOVEDADES\n";
             for (Product product : aNewProducts) { 	
                 //System.out.println(productNew.getName());
-                txt += product.toStringPrint() + "\n";
+                txt += product.toStringEmail() + "\n";
             }            
             txt += "\n\n\n\nOFERTAS\n";
             for (Product product : aSpecialProducts) { 	
                 //System.out.println(productNew.getName());
-                txt += product.toStringPrint() + "\n";
+                txt += product.toStringEmail() + "\n";
             }            
             p1.setText(txt);
 
