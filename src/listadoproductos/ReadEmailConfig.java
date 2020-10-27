@@ -25,15 +25,18 @@ import org.xml.sax.SAXException;
  * Obtiene los emails del archivo emails.xml
  * @author user
  */
-public class Email {
+public class ReadEmailConfig {
     private static final String XML_EMAILS = "emails.xml";
     private static ArrayList<String> aEmails = new ArrayList<String>();
     
-    public Email() throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+    public ReadEmailConfig(String path) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         XPath xPath = XPathFactory.newInstance().newXPath();
-        File xmlFile = new File(XML_EMAILS);
+        File xmlFile = new File(path.concat(XML_EMAILS));
+        if(!xmlFile.exists()){//si no encuentra el config puede pues que lo coja del local
+            xmlFile = new File("./" + XML_EMAILS);
+        }        
         Document docXML = dBuilder.parse(xmlFile);
         String expression = "/root/email";
         NodeList nDocXML = 

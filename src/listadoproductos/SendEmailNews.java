@@ -8,7 +8,7 @@ import javax.mail.internet.*;
 import javax.activation.*;
 import listadoproductos.info.Product;
 
-public class SendEmail {
+public class SendEmailNews {
     // for example, smtp.mailgun.org
     private static final String SMTP_SERVER = "localhost";
     private static final String USERNAME = "";
@@ -19,9 +19,9 @@ public class SendEmail {
     private static final String EMAIL_TO_CC = "";
 
     private static final String EMAIL_SUBJECT = "Organicos Vapeo: Novedades y Ofertas";
-    private static final String EMAIL_TEXT = "Hello Java Mail \n ABC123";
+    private static final String EMAIL_TEXT = "https://organicosvapeo.000webhostapp.com/\n\n";
 
-    public SendEmail(String emails, ArrayList<Product> aNewProducts, ArrayList<Product> aSpecialProducts) {
+    public SendEmailNews(String emails, ArrayList<Product> aNewProducts, ArrayList<Product> aSpecialProducts) {
 
         Properties prop = System.getProperties();
         prop.put("mail.smtp.auth", "false");
@@ -40,7 +40,8 @@ public class SendEmail {
 
             // text
             MimeBodyPart p1 = new MimeBodyPart();
-            String txt = "NOVEDADES\n";
+            String txt = EMAIL_TEXT;
+            txt += "NOVEDADES\n";
             for (Product product : aNewProducts) { 	
                 //System.out.println(productNew.getName());
                 txt += product.toStringEmail() + "\n";

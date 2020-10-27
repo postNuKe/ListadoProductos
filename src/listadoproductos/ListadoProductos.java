@@ -52,7 +52,7 @@ public class ListadoProductos {
         String localListado = args[0];
         
         
-        //LoadXMLIni loadXMLIni = new LoadXMLIni(localListado);
+        LoadXMLIni loadXMLIni = new LoadXMLIni(localListado);
         
         //averiguamos el path local para empezar a comparar los archivos
         Path path = Paths.get(localListado);
@@ -106,8 +106,8 @@ public class ListadoProductos {
             
             //mandamos el correo
             if(compareXML.getNewProducts().size() > 0 || compareXML.getSpecialProducts().size() > 0){
-                Email email = new Email();
-                SendEmail sendEmail = new SendEmail(
+                ReadEmailConfig email = new ReadEmailConfig(localPath);
+                SendEmailNews sendEmail = new SendEmailNews(
                         email.getEmailsToString()
                         , compareXML.getNewProducts()
                         , compareXML.getSpecialProducts()); //
@@ -115,7 +115,7 @@ public class ListadoProductos {
             
         }
         //copiamos el nuevo en el viejo
-        //FileCopyUtils.copy(fListado, fListadoPrevious);
+        FileCopyUtils.copy(fListado, fListadoPrevious);
         
         
         if(args.length > 1){//si solo ponemos la ruta del fListado en local que no de error
