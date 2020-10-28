@@ -71,22 +71,20 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
     </brand>
     
     
-    <shop name="All4Flavours" country="spain">
-        <baseUri>https://www.all4flavours.com/</baseUri>
-        <!--<pricePlus>1.21</pricePlus>-->
+    <shop name="Bulevar44.com" country="spain">
+        <baseUri>https://www.bulevar44.com</baseUri>
         <find>
-            <product>//article/div[@class='product-description']</product>
-            <name>.//h3[@class='h3 product-title']/a</name>
-            <price>.//span[@class='product-price']</price>
-            <uri>.//h3[@class='h3 product-title']/a</uri>
-            <special>.//div[@class='product-price-and-shipping']/span[@class='regular-price text-muted']</special>
-            <specialPrice>.//span[@class='product-price']</specialPrice>
+            <product>//article/div[contains(@class, 'thumbnail-container')]</product>
+            <name>.//div[@class='product-description']/p[@class='an_short_description']</name>
+            <price>.//span[@class='money']</price>
+            <uri>./a</uri>
+            <special>.//a/ul/li[@class='product-flag on-sale']</special>
+            <specialPrice>.//span[@class='money']</specialPrice>
         </find>
-        <remove>-</remove>
-        <remove>TPD</remove>
-        
-        <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=1&order=product.name.asc]]></page>
-    </shop>
+        <remove>...</remove>
+        <remove>,</remove>
+        <page name="ORGANICOS"><![CDATA[https://www.bulevar44.com/11-aromas?q=Tipo-Aroma+Orgánico]]></page>        
+    </shop>  
 
 
     <!--        POR COMO TIENEN LA WEB PROGRAMADA NO LOS PUEDO PONER PORQUE TENDRÍA QUE CAMBIAR MUCHO CÓDIGO

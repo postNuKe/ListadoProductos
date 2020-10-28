@@ -221,7 +221,7 @@ public class LoadPage {
      * @param ePrice
      * @return 
      */
-    public String writePrice(HtmlElement ePrice){   
+    public String writePrice(HtmlElement ePrice){  
         String var = html2text(ePrice.getTextContent()).replace(",", ".").trim();
         //buscamos que el precio este pegado al euro para separarlos
         String regex = "\\d\\p{Sc}";
