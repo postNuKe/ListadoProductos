@@ -107,8 +107,10 @@ public class ListadoProductos {
             //mandamos el correo
             if(compareXML.getNewProducts().size() > 0 || compareXML.getSpecialProducts().size() > 0){
                 ReadEmailConfig email = new ReadEmailConfig(localPath);
-                SendEmailNews sendEmail = new SendEmailNews(
-                        email.getEmailsToString()
+                SendEmailNewsByGmail sendEmail = new SendEmailNewsByGmail(
+                        args[1] //gmail_user_without_@gmail
+                        ,args[2] //gmail_password
+                        ,email.getEmailsToString()
                         , compareXML.getNewProducts()
                         , compareXML.getSpecialProducts()); //
             }
@@ -118,16 +120,16 @@ public class ListadoProductos {
         FileCopyUtils.copy(fListado, fListadoPrevious);
         
         
-        if(args.length > 1){//si solo ponemos la ruta del fListado en local que no de error
-            String remoteListado = args[1];
+        if(args.length > 3){//si solo ponemos la ruta del fListado en local que no de error
+            String remoteListado = args[3];
             /*
             String ftp = "ftp.server";
             String username = "user";
             String password = "1234567890";   
             */
-            String ftp = args[2];
-            String username = args[3];
-            String password = args[4];
+            String ftp = args[4];
+            String username = args[5];
+            String password = args[6];
 
             new FtpFileUpload(
                 localListado

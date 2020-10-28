@@ -2,7 +2,7 @@ MIN: /usr/lib/jvm/jdk-14.0.1/bin/java
 
 Ejecuta el finchero en la consola:
 
-"java -jar ListadoProductos.jar /path/where/is/ListadoProductos/listado.xml /path/to/save/remote/listado.xml server server_username server_password"
+"java -jar ListadoProductos.jar /path/where/is/ListadoProductos/listado.xml gmail_user_without@gmail gmail_password /path/to/save/remote/listado.xml ftpServer ftpServer_username ftpServer_password "
 
 Para que funcione el envio de emails, se debe de tener un Mail Server instalado en local.
 
