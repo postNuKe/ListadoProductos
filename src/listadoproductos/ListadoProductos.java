@@ -34,7 +34,6 @@ public class ListadoProductos {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {   
-        
         System.out.println("Number of Command Line Argument = "+args.length);
 
         for(int i = 0; i< args.length; i++) {

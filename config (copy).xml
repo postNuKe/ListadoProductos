@@ -23,6 +23,15 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <equals>Angolo dela Guancia</equals>
         <equals>Angolo Della Guancia</equals>
         <equals>ADG</equals>
+        <website>https://www.angolodellaguancia.it/</website>
+        <percent>12%</percent>
+        <collection>
+        	<product name="Mandingo">
+        		<percent>10%</percent>
+        		<review>https://www.youtube.com/watch?v=TkGWd9bircA</review>
+        		<review>https://www.youtube.com/watch?v=rHH4F2tf6q4</review>
+        	</product>
+        </collection>
     </brand>
     <brand>
         <name>AZHAD´S ELIXIRS</name>
@@ -33,215 +42,89 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <equals>Azhad Elixirs</equals>
         <equals>AZHAD´S ELIXIR</equals>
         <equals>AZHAD´S ELIXIRS</equals>
+        <website>https://www.azhadelixirs.it/</website>
+        <percent>12%</percent>
     </brand>
     <brand>
         <name>BLENDFEEL</name>
         <equals>BLENDFEEL</equals>
+        <website>https://blendfeel.com/es-ES/index_es.html</website>
+        <percent>10%</percent>
     </brand>
     <brand>
         <name>CLAMOUR VAPE</name>
         <equals>CLAMOUR VAPE</equals>
+        <website>https://www.clamourvape.ch/</website>
+        <percent>10%</percent>
     </brand>
     <brand>
         <name>LA TABACCHERIA</name>
         <equals>LA TABACCHERIA</equals>
         <equals>La Tabacchedria</equals>
+        <website>https://www.latabaccheria.net/en/</website>
+        <percent>6%-10%</percent>
     </brand>
     <brand>
         <name>THE VAPING GENTLEMEN CLUB</name>
         <equals>The Vaping Gentlemen Club</equals>
+        <website>https://thevapinggentlemen.club/</website>
+        <percent>10%</percent>
     </brand>
     <brand>
         <name>VAPLO</name>
         <equals>Vaplo</equals>
-    </brand>
-    <brand>
-        <name>HERRERA E-LIQUID</name>
-        <equals>Herrera E-liquid</equals>
-        <equals>Herrera</equals>
+        <website>http://www.vaplo.com/</website>
+        <percent>10%</percent>
     </brand>
     <brand>
         <name>TABACCHIFICIO 3.0</name>
         <equals>TABACCHIFICIO 3.0</equals>
         <equals>TABACCHIFICIO</equals>
+        <website>https://www.estrattitabacchificio.it/</website>
+        <percent>15%-18%</percent>
     </brand>
     <brand>
         <name>VAPOR CAVE</name>
         <equals>VAPOR CAVE</equals>
+        <website>https://thevapinggentlemen.club/collections/vapor-cave</website>
+        <percent>10%</percent>
     </brand>
-    
-    
-    <shop name="All4Flavours" country="spain">
-        <baseUri>https://www.all4flavours.com/</baseUri>
-        <!--<pricePlus>1.21</pricePlus>-->
+    <brand>
+        <name>STIXX MIXX</name>
+        <equals>STIXX MIXX</equals>
+        <website>https://www.stixxmixx.com/product-category/net-flavors/</website>
+        <percent>20%</percent>
+    </brand>
+
+    <shop name="Nomnomz" country="uk" currency="GBP">
+        <baseUri>https://www.nomnomz.co.uk/</baseUri>
         <find>
-            <product>//article/div[@class='product-description']</product>
-            <name>.//h3[@class='h3 product-title']/a</name>
-            <price>.//span[@class='product-price']</price>
-            <uri>.//h3[@class='h3 product-title']/a</uri>
-            <special>.//div[@class='product-price-and-shipping']/span[@class='regular-price text-muted']</special>
-            <specialPrice>.//span[@class='product-price']</specialPrice>
+            <product>//article[@class='item-box product-box']/div[@class='box-data grid']</product>
+            <name>./h3[@class='item-heading']/a</name>
+            <price>./span[@class='price']</price>
+            <uri>./h3[@class='item-heading']/a</uri>
+            <special>./span[@class='price price-sale']</special>
+            <specialPrice>./span[@class='price']</specialPrice>
         </find>
         <remove>-</remove>
-        <remove>TPD</remove>
-        
-        <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=1&order=product.name.asc]]></page>
-        <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=2&order=product.name.asc]]></page>
-        <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=3&order=product.name.asc]]></page>
-        <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=4&order=product.name.asc]]></page>
-        <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=5&order=product.name.asc]]></page>
-        <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=6&order=product.name.asc]]></page>
-        <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=7&order=product.name.asc]]></page>
-        <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=8&order=product.name.asc]]></page>
-        <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=9&order=product.name.asc]]></page>
-        <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=10&order=product.name.asc]]></page>
-    </shop>
-    
-    <shop name="Vapeo24" country="spain">
-        <baseUri>https://www.vapeo24.com/</baseUri>
-        <find>
-            <product>//div[@class='item']/div[@class='product']</product>
-            <name>.//h5[@class='product-name']</name>
-            <price>.//div[@class='product-footer']/p</price>
-            <uri>.//a</uri>
-            <special>.//span[@class='badge badge-danger'][1]</special>
-            <specialPrice>.//div[@class='product-footer']/p</specialPrice>
-        </find>
-        <remove>Aroma</remove>
-        <page name="LA TABACCHERIA">https://www.vapeo24.com/alquimia/la-tabaccheria</page>
-    </shop>
-    
-
-         
-    <shop name="VaporAviles" country="spain">
-        <baseUri>https://www.vaporaviles.com/</baseUri>
-        <find>
-            <product>//div[@class='col-inner']</product>
-            <name>.//p[contains(@class, 'name product-title')]</name>
-            <price>.//span[@class='price']</price>
-            <uri>.//p[contains(@class, 'name product-title')]/a</uri>
-            <special>.//span[@class='onsale']</special>
-            <specialPrice>.//span[@class='price']/ins</specialPrice>
-        </find>
-        <remove>–</remove>
-        <page name="ORGÁNICOS">https://www.vaporaviles.com/categoria-producto/alquimia/aromas/aromas-por-sabor/aromas-organicos/</page>
-        <page name="ORGÁNICOS">https://www.vaporaviles.com/categoria-producto/alquimia/aromas/aromas-por-sabor/aromas-organicos/page/2/</page>
-        <page name="ORGÁNICOS">https://www.vaporaviles.com/categoria-producto/alquimia/aromas/aromas-por-sabor/aromas-organicos/page/3/</page>
-        <page name="ORGÁNICOS">https://www.vaporaviles.com/categoria-producto/alquimia/aromas/aromas-por-sabor/aromas-organicos/page/4/</page>
-        <page name="ORGÁNICOS">https://www.vaporaviles.com/categoria-producto/alquimia/aromas/aromas-por-sabor/aromas-organicos/page/5/</page>
-        <page name="ORGÁNICOS">https://www.vaporaviles.com/categoria-producto/alquimia/aromas/aromas-por-sabor/aromas-organicos/page/6/</page>
-        <page name="ORGÁNICOS">https://www.vaporaviles.com/categoria-producto/alquimia/aromas/aromas-por-sabor/aromas-organicos/page/7/</page>
-        <page name="ORGÁNICOS">https://www.vaporaviles.com/categoria-producto/alquimia/aromas/aromas-por-sabor/aromas-organicos/page/8/</page>
-        <page name="ORGÁNICOS">https://www.vaporaviles.com/categoria-producto/alquimia/aromas/aromas-por-sabor/aromas-organicos/page/9/</page>
-        <page name="ORGÁNICOS">https://www.vaporaviles.com/categoria-producto/alquimia/aromas/aromas-por-sabor/aromas-organicos/page/10/</page>
-    </shop> 
-   
-    
-    <shop name="Bulevar44.com" country="spain">
-        <baseUri>https://www.bulevar44.com</baseUri>
-        <find>
-            <product>//div[@class='thumbnail-container wow fadeInUp']</product>
-            <name>.//div[@class='product-description']/p[@class='an_short_description']</name>
-            <price>.//div[@class='product-price-and-shipping']/span[@class='price']/span[@class='money']</price>
-            <uri>.//div[contains(@class, 'thumbnail-container-image')]/a</uri>
-            <special>.//a/ul/li[@class='product-flag on-sale']</special>
-            <specialPrice>.//div[@class='product-price-and-shipping']/span[@class='price']/span[@class='money']</specialPrice>
-        </find>
-        <remove>...</remove>
-        <remove>,</remove>
-        <page name="LA TABACCHERIA">https://www.bulevar44.com/11-aromas?q=Marca-La+Tabaccheria</page>        
-        <page name="ANGOLO DELLA GUANCIA">https://www.bulevar44.com/11-aromas?q=Marca-Angolo+della+Guancia</page>        
-        <page name="AZHAD´S ELIXIRS">https://www.bulevar44.com/11-aromas?q=Marca-Azhad%27s+Elixir</page>
-    </shop>      
-  
-
-    <shop name="SinHumo-Sevilla" country="spain">
-        <baseUri>https://www.sinhumo-sevilla.com/</baseUri>
-        <find>
-            <product>//article/div[@class='thumbnail-container']</product>
-            <name>.//div[@class='product-description']/h2/a</name>
-            <price>.//div[contains(@class, 'product-price-and-shipping')]/span[@class='price']</price>
-            <uri>.//a[@class='thumbnail product-thumbnail']</uri>
-            <special>.//span[contains(@class, 'discount-percentage')]</special>
-            <specialPrice>.//div[contains(@class, 'product-price-and-shipping')]/span[@class='price']</specialPrice>
-        </find>
-        <remove>by</remove>
-        <page name="LA TABACCHERIA">https://www.sinhumo-sevilla.net/70-aromas/s-4/marca_2-la_tabaccheria?page=1</page>
-        <page name="LA TABACCHERIA">https://www.sinhumo-sevilla.net/70-aromas/s-4/marca_2-la_tabaccheria?page=2</page>
-        <page name="ANGOLO DELLA GUANCIA">https://www.sinhumo-sevilla.net/70-aromas/s-4/marca_2-angolo_della_guancia?page=1</page>
-        <page name="ANGOLO DELLA GUANCIA">https://www.sinhumo-sevilla.net/70-aromas/s-4/marca_2-angolo_della_guancia?page=2</page>
-    </shop> 
-               
-    <shop name="Gomariztore" country="spain">
-        <baseUri>https://gomarizstore.com/</baseUri>
-        <find>
-            <product>//article/div[@class='pro_outer_box clearfix home_default']</product>
-            <name>.//div[@class='flex_box flex_start mini_name']/h3/a</name>
-            <price>.//span[contains(@class, 'price')]</price>
-            <uri>.//div[@class='flex_box flex_start mini_name']/h3/a</uri>
-            <special>.//span[contains(@class, 'regular-price')]</special>
-            <specialPrice>.//span[contains(@class, 'price')]</specialPrice>
-        </find>
-        <remove>by</remove>
-        <page name="ANGOLO DELLA GUANCIA">https://gomarizstore.com/aromas-adg</page>
-        <page name="LA TABACCHERIA">https://gomarizstore.com/aromas-la-tabaccheria</page>
-    </shop>              
-     
-    <shop name="Smo-kingshop.it" country="italy">
-        <baseUri>https://www.smo-kingshop.it</baseUri>
-        <find>
-            <product>//article[contains(@class, 'product-miniature product-style js-product-miniature')]/div[@class='product-container']</product>
-            <name>.//div[@class='second-block']/h5//a</name>
-            <price>.//div[@class='price-and-status']//div[contains(@class, 'first-prices')]</price>
-            <uri>.//div[@class='second-block']/h5//a</uri>
-            <special>.//span[@class='regular-price']</special>
-            <specialPrice>.//div[@class='price-and-status']//div[contains(@class, 'first-prices')]</specialPrice>
-        </find>
-        <page name="AZHAD´S ELIXIRS">https://www.smo-kingshop.it/it/196-azhad-s</page>
-        <page name="AZHAD´S ELIXIRS">https://www.smo-kingshop.it/it/129-azhad-s</page>
-        <page name="LA TABACCHERIA">https://www.smo-kingshop.it/it/1593-la-tabaccheria-liquido-pronto</page>
-        <page name="LA TABACCHERIA">https://www.smo-kingshop.it/it/109-la-tabaccheria</page>
-        <page name="THE VAPING GENTLEMEN CLUB">https://www.smo-kingshop.it/it/1801-the-vaping-gentlemen-club</page>  
-        <page name="THE VAPING GENTLEMEN CLUB">https://www.smo-kingshop.it/it/brand/79-vapor-cave</page>  
-    </shop> 
-
-    <shop name="TisVapo" country="italy">
-        <baseUri>https://www.tisvapo.it/</baseUri>
-        <find>
-            <product>//li/div[@class='inner clearfix']</product>
-            <name>.//div[@class='product-details']/a/h2</name>
-            <price>.//div[@class='product-details']/span[@class='price']</price>
-            <uri>.//div[@class='product-details']/a</uri>
-            <special>.//div[@class='product-details']/span[@class='price']/ins</special>
-            <specialPrice>.//div[@class='product-details']/span[@class='price']</specialPrice>
-        </find>   
-        <remove>–</remove>    
-        <remove>.</remove>
-        <page name="AZHAD´S ELIXIRS">https://www.tisvapo.it/aromi/azhads-elixir/?count=500</page>
-        <page name="ANGOLO DELLA GUANCIA">https://www.tisvapo.it/aromi/angolo-della-guancia/?count=500</page>
-        <page name="BLENDFEEL">https://www.tisvapo.it/aromi/blendfeel/?count=500</page>
-        <page name="CLAMOUR VAPE">https://www.tisvapo.it/aromi/clamour-vape/?count=500</page>
-        <page name="LA TABACCHERIA">https://www.tisvapo.it/aromi/la-tabaccheria/?count=500</page>
-        <page name="TABACCHIFICIO">https://www.tisvapo.it/aromi/tabacchificio-3-0/?count=500</page>
-        <page name="THE VAPING GENTLEMEN CLUB">https://www.tisvapo.it/aromi/the-vaping-gentlemen-club/?count=500</page>
-        <page name="THE VAPING GENTLEMEN CLUB">https://www.tisvapo.it/aromi/vapor-cave/?count=500</page>
-         
-    </shop>
-
-    <!--        POR COMO TIENEN LA WEB PROGRAMADA NO LOS PUEDO PONER PORQUE TENDRÍA QUE CAMBIAR MUCHO CÓDIGO
-    <shop name="Esmokingspain" country="spain">
-        <baseUri>https://www.esmokingspain.es/</baseUri>
-        <find>
-            <product>//div[contains(@class, 'product-item-holder')]/div[@class='product-item']</product>
-            <name>.//div[@class='title']/a</name>
-            <price>.//div[contains(@class, 'price-current')]</price>
-            <uri>.//div[@class='title']/a</uri>
-            <special>.//div[contains(@class, 'price-prev')]</special>
-        </find>
-        <remove>by</remove>
-        <page name="LA TABACCHERIA">https://www.esmokingspain.es/-c-596_546.html</page>
-        <page name="LA TABACCHERIA">https://www.esmokingspain.es/tabaccheria-10ml-c-25_467.html</page>
-        <page name="LA TABACCHERIA">https://www.esmokingspain.es/tabaccheria-10ml-c-25_467.html?page=2</page>
+        <page name="STIXX MIXX"><![CDATA[https://www.nomnomz.co.uk/stixx-mixx-net-1?page=1]]></page>
+        <page name="STIXX MIXX"><![CDATA[https://www.nomnomz.co.uk/stixx-mixx-net-1?page=2]]></page>
     </shop>     
-    -->
+    
+    
+    <shop name="Sapporet" country="spain" currency="EUR">
+        <baseUri>https://sapporet.es/</baseUri>
+        <find>
+            <product>//article[contains(@class, 'product-miniature')]/div[@class='product-container']</product>
+            <name>./div[@class='second-block']/h5/a</name>
+            <price>./div[@class='second-block']/div[@class='second-block-wrapper']//span[@class='price product-price']</price>
+            <uri>./div[@class='second-block']/h5/a</uri>
+            <special>./div[@class='second-block']/div[@class='second-block-wrapper']//span[@class='discount-product discount-percentage']</special>
+            <specialPrice>./div[@class='second-block']/div[@class='second-block-wrapper']//span[@class='price product-price']</specialPrice>
+        </find>
+        <remove>-</remove>
+        <remove>(Aroma)</remove>
+        <page name="ANGOLO DELLA GUANCIA">https://sapporet.es/aromas?q=Marca-Angolo+Della+Guancia</page>
+    </shop>   
+	
 </root>

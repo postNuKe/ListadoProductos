@@ -7,6 +7,7 @@
 package listadoproductos.info;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -28,7 +29,8 @@ import javax.xml.bind.annotation.XmlType;
  * @author user
  */
 @XmlRootElement(name = "product")
-@XmlType(propOrder = { "name", "brand", "uri", "price", "isSpecial", "shopName", "shopCountry", "shopUri" })
+@XmlType(propOrder = { "name", "brand", "uri", "price", "isSpecial"
+        , "shopName", "shopCountry", "shopUri", "brandUri", "percent", "reviews" })
 public class Product {
     @XmlAttribute
     private String id;
@@ -41,12 +43,16 @@ public class Product {
     private String uri;
     private String price;
     private boolean isSpecial;
+    private String brandUri;
+    private String percent;
+    private String[] reviews;
     
     public Product() {
     }
     
     public Product(String shopName, String shopCountry, String shopUri, String name, String brand,
-            String uri, String price, boolean isSpecial){
+            String uri, String price, boolean isSpecial, String brandUri,
+            String percent, String[] reviews){
         this.id = uri;
         this.shopName = shopName;
         this.shopCountry = shopCountry;
@@ -56,6 +62,9 @@ public class Product {
         this.uri = uri;
         this.price = price;
         this.isSpecial = isSpecial;
+        this.brandUri = brandUri;
+        this.percent = percent;
+        this.reviews = reviews;
     }
     
     public String getId() {
@@ -137,6 +146,34 @@ public class Product {
         this.isSpecial = isSpecial;
     }
     
+    public String getBrandUri(){
+        return this.brandUri;
+    }   
+    
+    @XmlElement
+    public void setBrandUri(String brandUri){
+        this.brandUri = brandUri;
+    }
+    
+    public String getPercent(){
+        return this.percent;
+    }   
+    
+    @XmlElement
+    public void setPercent(String percent){
+        this.percent = percent;
+    }
+    
+    public String[] getReviews(){
+        return this.reviews;
+    }   
+    
+    @XmlElementWrapper(name = "reviews")
+    @XmlElement(name = "review")
+    public void setReviews(String[] reviews){
+        this.reviews = reviews;
+    }
+    
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Product{");
@@ -148,6 +185,9 @@ public class Product {
         sb.append(", uri='").append(this.uri).append('\'');
         sb.append(", price='").append(this.price).append('\'');
         sb.append(", isSpecial='").append(this.isSpecial).append('\'');
+        sb.append(", brandUri='").append(this.brandUri).append('\'');
+        sb.append(", percent='").append(this.percent).append('\'');
+        sb.append(", reviews='").append(this.reviews.toString()).append('\'');
         sb.append('}');
         return sb.toString();
     }

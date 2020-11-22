@@ -14,10 +14,14 @@ import java.util.ArrayList;
 public class Brand {
     private String name = "";
     private ArrayList<String> equals = new ArrayList<String>();
+    private String uri = "";
+    private String percent = "";
     
     public void Brand(){
         this.name = "";
         this.equals = new ArrayList<String>();
+        this.uri = "";
+        this.percent = "";
     }
     
     public String getName(){
@@ -34,6 +38,20 @@ public class Brand {
     
     public ArrayList<String> getEquals(){
         return this.equals;
+    }
+    
+    public String getUri(){
+        return this.uri;
+    }
+    public void setUri(String uri){
+        this.uri = uri;
+    }
+    
+    public String getPercent(){
+        return this.percent;
+    }
+    public void setPercent(String percent){
+        this.percent = percent;
     }
     
 }

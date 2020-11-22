@@ -33,6 +33,7 @@ public class LoadPage {
     private static String baseUri = "";
     private static String baseName = "";
     private static String country = "";
+    private static String currency = "EUR";
     private static String uri = "";
     private static String name = "";
     
@@ -50,13 +51,16 @@ public class LoadPage {
     private static Double pricePlus = 1.0;
     
     /** Remover cadenas a buscar en precio y nombre */
-    private static List<String> rStrings = new ArrayList<String>();;
+    private static List<String> rStrings = new ArrayList<String>();
+    
+    private Currency currencies;
 
     public LoadPage() {
         
         baseUri = "";
         baseName = "";
         country = "";
+        currency = "EUR";
         uri = "";
         name = "";
 
@@ -83,6 +87,14 @@ public class LoadPage {
     public void setCountry(String country){
         this.country = country;  
     }
+    public void setCurrency(String currency){
+        this.currency = currency;
+    }
+    
+    public void setCurrencies(Currency cur){
+        this.currencies = cur;
+    }
+    
     public void setPricePlus(String tPricePlus){
         pricePlus = Double.valueOf(tPricePlus);  
     }
@@ -134,6 +146,9 @@ public class LoadPage {
         try (final WebClient webClient = new WebClient(BrowserVersion.CHROME)) {
             webClient.getOptions().setThrowExceptionOnScriptError(false);
             webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
+            webClient.getOptions().setCssEnabled(false);
+            webClient.getOptions().setJavaScriptEnabled(false);
+            webClient.getOptions().setDownloadImages(false);            
             try {
                 HtmlPage page = webClient.getPage(uri);
                 //webClient.waitForBackgroundJavaScript(60 * 1000);
@@ -150,16 +165,23 @@ public class LoadPage {
                     myProduct.setShopUri(baseUri);
                     myProduct.setShopCountry(country);
                     myProduct.setName(writeName(product.getFirstByXPath(findName)));
-                    myProduct.setBrand(getBrand(getProductName(product.getFirstByXPath(findName))));
+                    
+                    Brand brand = getBrand(getProductName(product.getFirstByXPath(findName)));
+                    myProduct.setBrand(brand.getName());
+                    myProduct.setBrandUri(brand.getUri());
+                    myProduct.setPercent(brand.getPercent());
+                    
                     myProduct.setUri(writeUri(product.getFirstByXPath(findUri)));
                     myProduct.setId();
                     myProduct.setIsSpecial(writeSpecial(product.getFirstByXPath(findSpecial)));
+                    //System.out.println(myProduct.getIsSpecial());
                     if(myProduct.getIsSpecial()){
                         myProduct.setPrice(writePrice(product.getFirstByXPath(findSpecialPrice)));
                     }else{
                         myProduct.setPrice(writePrice(product.getFirstByXPath(findPrice)));
                     }
                     //System.out.println(myProduct.toString());
+
 
                     productList.add(myProduct);
 
@@ -223,8 +245,22 @@ public class LoadPage {
      */
     public String writePrice(HtmlElement ePrice){  
         String var = html2text(ePrice.getTextContent()).replace(",", ".").trim();
+        
+        //Si la moneda no es el Euro, eliminar la moneda, calcular el precio
+        //en euros, y añadirle el simbolo del euro
+        if(var.contains("£")){
+            var = var.replace("£", "");
+            Float floatPrice = Float.valueOf(var);
+            //System.out.println(floatPrice);
+            Double doublePricePlus = floatPrice * currencies.get(currency);
+            //System.out.println(doublePricePlus);
+            DecimalFormat df2 = new DecimalFormat("#.##");
+            doublePricePlus = Double.valueOf(df2.format(doublePricePlus));   
+            var = doublePricePlus.toString() + " €";
+        }
+        
         //buscamos que el precio este pegado al euro para separarlos
-        String regex = "\\d\\p{Sc}";
+        String regex = "\\d\\p{Sc}"; //cualquier moneda, \p{Sc} euro
         //System.out.print(" precio:" + var);
         Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(var);
@@ -278,6 +314,7 @@ public class LoadPage {
         System.out.println(" || " + var);
         return var;
     }
+
     public String writeUri(HtmlElement eUri){        
         String var = eUri.getAttribute("href");
         System.out.print(" || " + var);   
@@ -354,18 +391,20 @@ public class LoadPage {
      * @param name
      * @return 
      */
-    public String getBrand(String productName){
+    public Brand getBrand(String productName){
         for (Brand brand : this.brands) {
             //System.out.print(brand.getName() + " : ");
             for (String equals : brand.getEquals()) {
                 if(productName.toLowerCase().contains(equals.toLowerCase())){
                     //System.out.print(" @@ Marca: " + equals);
-                    return brand.getName();
+                    return brand;
                 }
                 //System.out.print(" @@ " + equals);
             }
             //System.out.println("");
-        }        
-        return this.name;
+        }      
+        Brand brand = new Brand();
+        brand.setName(this.name);
+        return brand;
     }
 }

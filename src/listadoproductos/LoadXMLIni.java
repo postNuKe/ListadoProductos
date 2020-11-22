@@ -39,6 +39,8 @@ public final class LoadXMLIni {
     
     public LoadXMLIni(String pathListado){
         try {       
+            //cargamos las monedas
+            Currency currencies = new Currency();
             setPathListado(pathListado);
             ArrayList<Product> productList = new ArrayList<Product>();
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
@@ -72,6 +74,8 @@ public final class LoadXMLIni {
                     Element eBrand = (Element) nBrand;
                     Brand brand = new Brand();
                     brand.setName(eBrand.getElementsByTagName("name").item(0).getTextContent());
+                    brand.setUri(eBrand.getElementsByTagName("website").item(0).getTextContent());
+                    brand.setPercent(eBrand.getElementsByTagName("percent").item(0).getTextContent());
                     //System.out.println("BRAND: " + brand.getName());
                     
                     NodeList nEquals = eBrand.getElementsByTagName("equals");
@@ -83,6 +87,22 @@ public final class LoadXMLIni {
                             //System.out.print("||" + eEqual.getTextContent());
                         }
                     }
+                    /*
+                    //collection
+                    Node nCollection = eBrand.getElementsByTagName("collection").item(0);
+                    if(nCollection.getNodeType() == Node.ELEMENT_NODE){
+                        Element eProduct = (Element) nCollection;
+                        NodeList nProducts = eProduct.getElementsByTagName("product");
+                        for (int i = 0; i < nProducts.getLength(); i++) {
+                            Node nProduct = nProducts.item(i);
+                            if (nProduct.getNodeType() == Node.ELEMENT_NODE) {
+                                Element eEqual = (Element) nProduct;
+                                brand.addEquals(eEqual.getTextContent());
+                                //System.out.print("||" + eEqual.getTextContent());
+                            }
+                        }
+                    }                 
+                    */
                     brands.add(brand);
                     //System.out.println("");
                 }
@@ -122,6 +142,8 @@ public final class LoadXMLIni {
                     lPage.setBrands(brands);
                     lPage.setBaseName(eShop.getAttribute("name"));
                     lPage.setCountry(eShop.getAttribute("country"));
+                    lPage.setCurrency(eShop.getAttribute("currency"));
+                    lPage.setCurrencies(currencies);
                     lPage.setBaseUri(eShop.getElementsByTagName("baseUri").item(0).getTextContent());
                     Node pricePlus = eShop.getElementsByTagName("pricePlus").item(0);
                     if(pricePlus != null){
@@ -162,7 +184,9 @@ public final class LoadXMLIni {
                         if (nShop.getNodeType() == Node.ELEMENT_NODE) {
                             Element ePage = (Element) nPage;
                             lPage.setName(ePage.getAttribute("name"));
+                            //System.out.println(ePage.getAttribute("name"));
                             lPage.setUri(ePage.getTextContent());
+                            //System.out.println(ePage.getTextContent());
                             lPage.load(); 
                             listPages.add(ePage.getTextContent());
                         }
