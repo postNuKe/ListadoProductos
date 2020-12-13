@@ -153,6 +153,7 @@ public final class LoadXMLIni {
                     }else lPage.setPricePlus("1.0");
 
                     //FIND PRODUCTOS
+                    //definimos los tags a encontrar en la web para cada pagina
                     Node nFind = eShop.getElementsByTagName("find").item(0);
                     if(nFind.getNodeType() == Node.ELEMENT_NODE){
                         Element eFind = (Element) nFind;
@@ -163,6 +164,10 @@ public final class LoadXMLIni {
                         lPage.setFindUri(eFind.getElementsByTagName("uri").item(0).getTextContent());                  
                         lPage.setFindSpecial(eFind.getElementsByTagName("special").item(0).getTextContent());
                         lPage.setFindSpecialPrice(eFind.getElementsByTagName("specialPrice").item(0).getTextContent());
+                        lPage.setFindHasReviews(eFind.getElementsByTagName("hasReviews").item(0).getTextContent());
+                        //Product Page
+                        lPage.setPPComments(eFind.getElementsByTagName("pPComments").item(0).getTextContent());
+                        
                         Node nProduct = eFind.getElementsByTagName("special").item(0);
                         Element eProduct = (Element) nProduct;
                     }

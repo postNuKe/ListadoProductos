@@ -26,11 +26,11 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <website>https://www.angolodellaguancia.it/</website>
         <percent>12%</percent>
         <collection>
-        	<product name="Mandingo">
-        		<percent>10%</percent>
-        		<review>https://www.youtube.com/watch?v=TkGWd9bircA</review>
-        		<review>https://www.youtube.com/watch?v=rHH4F2tf6q4</review>
-        	</product>
+            <product name="Mandingo">
+                <percent>10%</percent>
+                <review>https://www.youtube.com/watch?v=TkGWd9bircA</review>
+                <review>https://www.youtube.com/watch?v=rHH4F2tf6q4</review>
+            </product>
         </collection>
     </brand>
     <brand>
@@ -95,36 +95,27 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <website>https://www.stixxmixx.com/product-category/net-flavors/</website>
         <percent>20%</percent>
     </brand>
+ 
+    
+    <shop name="Smo-kingshop.it" country="italy" currency="EUR">
+        <baseUri>https://www.smo-kingshop.it</baseUri>
+        <find>
+            <product>//article[contains(@class, 'product-miniature product-style js-product-miniature')]/div[@class='product-container']</product>
+            <name>.//div[@class='second-block']/h5//a</name>
+            <price>.//div[@class='price-and-status']//div[contains(@class, 'first-prices')]</price>
+            <uri>.//div[@class='second-block']/h5//a</uri>
+            <special>.//span[@class='regular-price']</special>
+            <specialPrice>.//div[@class='price-and-status']//div[contains(@class, 'first-prices')]</specialPrice>
+            <hasReviews>.//div[@class='star-rating']</hasReviews>
+            <!-- Product Page -->
+            <pPComments>//ol[@class='commentlist']/li//div[@class='description']</pPComments>                 
+        </find>
+        <page name="AZHAD´S ELIXIRS">https://www.smo-kingshop.it/it/196-azhad-s</page>
+        <page name="AZHAD´S ELIXIRS">https://www.smo-kingshop.it/it/129-azhad-s</page>
+        <page name="LA TABACCHERIA">https://www.smo-kingshop.it/it/1593-la-tabaccheria-liquido-pronto</page>
+        <page name="LA TABACCHERIA">https://www.smo-kingshop.it/it/109-la-tabaccheria</page>
+        <page name="THE VAPING GENTLEMEN CLUB">https://www.smo-kingshop.it/it/1801-the-vaping-gentlemen-club</page>
+        <page name="THE VAPING GENTLEMEN CLUB">https://www.smo-kingshop.it/it/brand/79-vapor-cave</page>  
+    </shop> 
 
-    <shop name="Nomnomz" country="uk" currency="GBP">
-        <baseUri>https://www.nomnomz.co.uk/</baseUri>
-        <find>
-            <product>//article[@class='item-box product-box']/div[@class='box-data grid']</product>
-            <name>./h3[@class='item-heading']/a</name>
-            <price>./span[@class='price']</price>
-            <uri>./h3[@class='item-heading']/a</uri>
-            <special>./span[@class='price price-sale']</special>
-            <specialPrice>./span[@class='price']</specialPrice>
-        </find>
-        <remove>-</remove>
-        <page name="STIXX MIXX"><![CDATA[https://www.nomnomz.co.uk/stixx-mixx-net-1?page=1]]></page>
-        <page name="STIXX MIXX"><![CDATA[https://www.nomnomz.co.uk/stixx-mixx-net-1?page=2]]></page>
-    </shop>     
-    
-    
-    <shop name="Sapporet" country="spain" currency="EUR">
-        <baseUri>https://sapporet.es/</baseUri>
-        <find>
-            <product>//article[contains(@class, 'product-miniature')]/div[@class='product-container']</product>
-            <name>./div[@class='second-block']/h5/a</name>
-            <price>./div[@class='second-block']/div[@class='second-block-wrapper']//span[@class='price product-price']</price>
-            <uri>./div[@class='second-block']/h5/a</uri>
-            <special>./div[@class='second-block']/div[@class='second-block-wrapper']//span[@class='discount-product discount-percentage']</special>
-            <specialPrice>./div[@class='second-block']/div[@class='second-block-wrapper']//span[@class='price product-price']</specialPrice>
-        </find>
-        <remove>-</remove>
-        <remove>(Aroma)</remove>
-        <page name="ANGOLO DELLA GUANCIA">https://sapporet.es/aromas?q=Marca-Angolo+Della+Guancia</page>
-    </shop>   
-	
 </root>

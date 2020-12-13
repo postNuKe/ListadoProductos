@@ -5,6 +5,8 @@
  * http://zetcode.com/java/jaxb/
  */
 package listadoproductos.info;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -45,14 +47,14 @@ public class Product {
     private boolean isSpecial;
     private String brandUri;
     private String percent;
-    private String[] reviews;
+    private List<String> reviews = new ArrayList<String>();
     
     public Product() {
     }
     
     public Product(String shopName, String shopCountry, String shopUri, String name, String brand,
             String uri, String price, boolean isSpecial, String brandUri,
-            String percent, String[] reviews){
+            String percent, List<String> reviews){
         this.id = uri;
         this.shopName = shopName;
         this.shopCountry = shopCountry;
@@ -164,13 +166,17 @@ public class Product {
         this.percent = percent;
     }
     
-    public String[] getReviews(){
+    public List<String> getReviews(){
         return this.reviews;
     }   
     
+    public void addReview(String review){
+        this.reviews.add(review);
+    }
+    
     @XmlElementWrapper(name = "reviews")
     @XmlElement(name = "review")
-    public void setReviews(String[] reviews){
+    public void setReviews(List<String> reviews){
         this.reviews = reviews;
     }
     

@@ -48,6 +48,11 @@ public class LoadPage {
     private static String findSpecial = "";
     private static String findSpecialPrice = "";
     
+    private static String findHasReviews = "";
+    
+    //Product Page
+    private static String pPComments = "";
+    
     private static Double pricePlus = 1.0;
     
     /** Remover cadenas a buscar en precio y nombre */
@@ -70,6 +75,10 @@ public class LoadPage {
         findUri = "";
         findSpecial = "";  
         findSpecialPrice = "";
+        findHasReviews = "";
+        
+        //Product page
+        pPComments = "";
         
         pricePlus = 1.0;
         
@@ -124,6 +133,9 @@ public class LoadPage {
     public void setFindSpecialPrice(String tFindSpecialPrice){
         findSpecialPrice = tFindSpecialPrice;
     }         
+    public void setFindHasReviews(String tFindHasReviews){
+        findHasReviews = tFindHasReviews;
+    }         
 
     public void setRStrings(List<String> array){
         rStrings = array;
@@ -136,6 +148,11 @@ public class LoadPage {
     public ArrayList<Product> getProductList(){
         return productList;
     }
+    
+    //Product Page
+    public void setPPComments(String pPComments){
+        this.pPComments = pPComments;
+    }    
     
     public void load() throws IOException {
         LogFactory.getFactory().setAttribute("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.NoOpLog");
@@ -181,6 +198,39 @@ public class LoadPage {
                         myProduct.setPrice(writePrice(product.getFirstByXPath(findPrice)));
                     }
                     //System.out.println(myProduct.toString());
+ 
+                    //comentarios
+                    if(product.getFirstByXPath(findHasReviews) != null){
+                        System.out.println("¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡tiene comentarios");
+                        //cargamos la pagina del producto para ver los comentarios
+                        //producto Page
+                        try (final WebClient webClient2 = new WebClient(BrowserVersion.CHROME)) {
+                            webClient2.getOptions().setThrowExceptionOnScriptError(false);
+                            webClient2.getOptions().setThrowExceptionOnFailingStatusCode(false);
+                            webClient2.getOptions().setCssEnabled(false);
+                            webClient2.getOptions().setJavaScriptEnabled(false);
+                            webClient2.getOptions().setDownloadImages(false);            
+                            try {
+                                HtmlPage productPage = webClient2.getPage(myProduct.getUri());
+                                //webClient.waitForBackgroundJavaScript(60 * 1000);
+                                System.out.println("¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡" + productPage.getBaseURI());
+
+                                List<HtmlDivision> comments = productPage.getByXPath(pPComments);
+                                System.out.println("¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡Comentarios en la pagina " + comments.size());  
+                                //comentarios de la pagina del producto
+                                for (HtmlDivision comment : comments) {
+                                    //System.out.println(comment.getTextContent());
+                                    myProduct.addReview(toHTML(html2text(comment.getTextContent()).trim()));
+                                }
+                            }catch (IOException e) {
+                                /*me dio un error de conexion ssl en una web asi que mejor 
+                                esto para no interrumpir la ejecucion completa de la app
+                                */
+                                System.out.println("Error: " + e.getMessage());
+                                e.printStackTrace();
+                            }
+                        }
+                    }
 
 
                     productList.add(myProduct);

@@ -42,6 +42,7 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <equals>Azhad Elixirs</equals>
         <equals>AZHAD´S ELIXIR</equals>
         <equals>AZHAD´S ELIXIRS</equals>
+        <equals>Azhad's Elixir</equals>
         <website>https://www.azhadelixirs.it/</website>
         <percent>12%</percent>
     </brand>
@@ -67,6 +68,7 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
     <brand>
         <name>THE VAPING GENTLEMEN CLUB</name>
         <equals>The Vaping Gentlemen Club</equals>
+        <equals>TVGC</equals>
         <website>https://thevapinggentlemen.club/</website>
         <percent>10%</percent>
     </brand>
@@ -81,7 +83,7 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <equals>TABACCHIFICIO 3.0</equals>
         <equals>TABACCHIFICIO</equals>
         <website>https://www.estrattitabacchificio.it/</website>
-        <percent>15%-18%</percent>
+        <percent>15%-20%</percent>
     </brand>
     <brand>
         <name>VAPOR CAVE</name>
@@ -96,21 +98,7 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <percent>20%</percent>
     </brand>
 
-    <shop name="Nomnomz" country="uk" currency="GBP">
-        <baseUri>https://www.nomnomz.co.uk/</baseUri>
-        <find>
-            <product>//article[@class='item-box product-box']/div[@class='box-data grid']</product>
-            <name>./h3[@class='item-heading']/a</name>
-            <price>./span[@class='price']</price>
-            <uri>./h3[@class='item-heading']/a</uri>
-            <special>./span[@class='price price-sale']</special>
-            <specialPrice>./span[@class='price']</specialPrice>
-        </find>
-        <remove>-</remove>
-        <page name="STIXX MIXX"><![CDATA[https://www.nomnomz.co.uk/stixx-mixx-net-1?page=1]]></page>
-        <page name="STIXX MIXX"><![CDATA[https://www.nomnomz.co.uk/stixx-mixx-net-1?page=2]]></page>
-    </shop>  
-    
+
     
     <shop name="All4Flavours" country="spain" currency="EUR">
         <baseUri>https://www.all4flavours.com/</baseUri>
@@ -122,6 +110,9 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <uri>.//h3[@class='h3 product-title']/a</uri>
             <special>.//div[@class='product-price-and-shipping']/span[@class='regular-price text-muted']</special>
             <specialPrice>.//span[@class='product-price']</specialPrice>
+            <hasReviews>.//div[@class='iqitreviews-simple']</hasReviews>
+            <!-- Product Page -->
+            <pPComments>//div[@class='comment' and @itemprop='reviewBody']</pPComments>            
         </find>
         <remove>-</remove>
         <remove>TPD</remove>
@@ -139,6 +130,8 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=8&order=product.name.asc]]></page>
         <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=9&order=product.name.asc]]></page>
         <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=10&order=product.name.asc]]></page>
+        <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=11&order=product.name.asc]]></page>
+        <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=12&order=product.name.asc]]></page>
     </shop>
 
     <shop name="VaporAviles" country="spain" currency="EUR">
@@ -150,6 +143,9 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <uri>.//p[contains(@class, 'name product-title')]/a</uri>
             <special>.//span[@class='onsale']</special>
             <specialPrice>.//span[@class='price']/ins</specialPrice>
+            <hasReviews>.//div[@class='star-rating']</hasReviews>
+            <!-- Product Page -->
+            <pPComments>//ol[@class='commentlist']/li//div[@class='description']</pPComments>              
         </find>
         <remove>–</remove>
         <page name="ORGÁNICOS">https://www.vaporaviles.com/categoria-producto/alquimia/aromas/aromas-por-sabor/aromas-organicos/</page>
@@ -174,6 +170,9 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <uri>./a</uri>
             <special>.//a/ul/li[@class='product-flag on-sale']</special>
             <specialPrice>.//span[@class='money']</specialPrice>
+            <hasReviews>.//div[@class='star-rating']</hasReviews>
+            <!-- Product Page -->
+            <pPComments>//ol[@class='commentlist']/li//div[@class='description']</pPComments>              
         </find>
         <remove>...</remove>
         <remove>,</remove>
@@ -192,14 +191,15 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <uri>.//a[@class='thumbnail product-thumbnail']</uri>
             <special>.//span[contains(@class, 'discount-percentage')]</special>
             <specialPrice>.//div[contains(@class, 'product-price-and-shipping')]/span[@class='price']</specialPrice>
+            <hasReviews>.//div[@class='star-rating']</hasReviews>
+            <!-- Product Page -->
+            <pPComments>//ol[@class='commentlist']/li//div[@class='description']</pPComments>  
         </find>
         <remove>(Orgánico)</remove>
         <remove>Aroma</remove>
         <remove>by</remove>
-        <page name="LA TABACCHERIA">https://www.sinhumo-sevilla.net/70-aromas/s-4/marca_2-la_tabaccheria?page=1</page>
-        <page name="LA TABACCHERIA">https://www.sinhumo-sevilla.net/70-aromas/s-4/marca_2-la_tabaccheria?page=2</page>
-        <page name="ANGOLO DELLA GUANCIA">https://www.sinhumo-sevilla.net/70-aromas/s-4/marca_2-angolo_della_guancia?page=1</page>
-        <page name="ANGOLO DELLA GUANCIA">https://www.sinhumo-sevilla.net/70-aromas/s-4/marca_2-angolo_della_guancia?page=2</page>
+        <page name="LA TABACCHERIA">https://www.sinhumo-sevilla.net/952-la-tabaccheria</page>
+        <page name="ANGOLO DELLA GUANCIA">https://www.sinhumo-sevilla.net/1172-aromas-angolo-della-guancia</page>
     </shop> 
                
     <shop name="Gomariztore" country="spain" currency="EUR">
@@ -211,6 +211,9 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <uri>.//div[@class='flex_box flex_start mini_name']/h3/a</uri>
             <special>.//span[contains(@class, 'regular-price')]</special>
             <specialPrice>.//span[contains(@class, 'price')]</specialPrice>
+            <hasReviews>.//div[@class='star-rating']</hasReviews>
+            <!-- Product Page -->
+            <pPComments>//ol[@class='commentlist']/li//div[@class='description']</pPComments>  
         </find>
         <remove>-</remove>
         <remove>Organico Microfiltrado</remove>
@@ -227,6 +230,9 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <uri>./div[@class='second-block']/h5/a</uri>
             <special>./div[@class='second-block']/div[@class='second-block-wrapper']//span[@class='discount-product discount-percentage']</special>
             <specialPrice>./div[@class='second-block']/div[@class='second-block-wrapper']//span[@class='price product-price']</specialPrice>
+            <hasReviews>.//div[@class='star-rating']</hasReviews>
+            <!-- Product Page -->
+            <pPComments>//ol[@class='commentlist']/li//div[@class='description']</pPComments>              
         </find>
         <remove>-</remove>
         <remove>(Aroma)</remove>
@@ -243,12 +249,15 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <uri>.//div[@class='second-block']/h5//a</uri>
             <special>.//span[@class='regular-price']</special>
             <specialPrice>.//div[@class='price-and-status']//div[contains(@class, 'first-prices')]</specialPrice>
+            <hasReviews>.//div[@class='star-rating']</hasReviews>
+            <!-- Product Page -->
+            <pPComments>//ol[@class='commentlist']/li//div[@class='description']</pPComments>             
         </find>
         <page name="AZHAD´S ELIXIRS">https://www.smo-kingshop.it/it/196-azhad-s</page>
         <page name="AZHAD´S ELIXIRS">https://www.smo-kingshop.it/it/129-azhad-s</page>
         <page name="LA TABACCHERIA">https://www.smo-kingshop.it/it/1593-la-tabaccheria-liquido-pronto</page>
         <page name="LA TABACCHERIA">https://www.smo-kingshop.it/it/109-la-tabaccheria</page>
-        <page name="THE VAPING GENTLEMEN CLUB">https://www.smo-kingshop.it/it/1801-the-vaping-gentlemen-club</page>  
+        <page name="THE VAPING GENTLEMEN CLUB">https://www.smo-kingshop.it/it/1801-the-vaping-gentlemen-club</page>
         <page name="THE VAPING GENTLEMEN CLUB">https://www.smo-kingshop.it/it/brand/79-vapor-cave</page>  
     </shop> 
 
@@ -261,6 +270,9 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <uri>.//div[@class='product-details']/a</uri>
             <special>.//div[@class='product-details']/span[@class='price']/ins</special>
             <specialPrice>.//div[@class='product-details']/span[@class='price']</specialPrice>
+            <hasReviews>.//div[@class='star-rating']</hasReviews>
+            <!-- Product Page -->
+            <pPComments>//ol[@class='commentlist']/li//div[@class='description']</pPComments>             
         </find>   
         <remove>–</remove>    
         <remove>.</remove>
@@ -275,5 +287,21 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
          
     </shop>
 
+    <!--
+    <shop name="Nomnomz" country="uk" currency="GBP">
+        <baseUri>https://www.nomnomz.co.uk/</baseUri>
+        <find>
+            <product>//article[@class='item-box product-box']/div[@class='box-data grid']</product>
+            <name>./h3[@class='item-heading']/a</name>
+            <price>./span[@class='price']</price>
+            <uri>./h3[@class='item-heading']/a</uri>
+            <special>./span[@class='price price-sale']</special>
+            <specialPrice>./span[@class='price']</specialPrice>
+        </find>
+        <remove>-</remove>
+        <page name="STIXX MIXX"><![CDATA[https://www.nomnomz.co.uk/stixx-mixx-net-1?page=1]]></page>
+        <page name="STIXX MIXX"><![CDATA[https://www.nomnomz.co.uk/stixx-mixx-net-1?page=2]]></page>
+    </shop>  
+    -->
 
 </root>
