@@ -8,6 +8,7 @@ package listadoproductos;
 import listadoproductos.info.Product;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.DomElement;
 import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -293,7 +294,7 @@ public class LoadPage {
      * @param ePrice
      * @return 
      */
-    public String writePrice(HtmlElement ePrice){  
+    public String writePrice(DomElement ePrice){  
         String var = html2text(ePrice.getTextContent()).replace(",", ".").trim();
         
         //Si la moneda no es el Euro, eliminar la moneda, calcular el precio
@@ -373,7 +374,7 @@ public class LoadPage {
 
     public boolean writeSpecial(HtmlElement e){
         boolean var = false;
-        if (e != null){
+        if (e != null && !e.getTextContent().equals("")){
             System.out.print(" || OFERTA ");
             var = true;
         }

@@ -119,6 +119,8 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <remove>Aroma</remove>
         <remove>Orgánico</remove>
         <remove>Microfiltrado</remove>
+        <remove>10ml</remove>
+        <remove>20ml</remove>     
         
         <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=1&order=product.name.asc]]></page>
         <page name="ORGÁNICOS"><![CDATA[https://www.all4flavours.com/3-concentrados-vapeo/s-8/tipo_de_sabor-extracto_organico?page=2&order=product.name.asc]]></page>
@@ -148,6 +150,11 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <pPComments>//ol[@class='commentlist']/li//div[@class='description']</pPComments>              
         </find>
         <remove>–</remove>
+        <remove>10ml</remove>
+        <remove>20ml</remove>
+        <remove>Aroma</remove>
+        <remove>Orgánico</remove>
+
         <page name="ORGÁNICOS">https://www.vaporaviles.com/categoria-producto/alquimia/aromas/aromas-por-sabor/aromas-organicos/</page>
         <page name="ORGÁNICOS">https://www.vaporaviles.com/categoria-producto/alquimia/aromas/aromas-por-sabor/aromas-organicos/page/2/</page>
         <page name="ORGÁNICOS">https://www.vaporaviles.com/categoria-producto/alquimia/aromas/aromas-por-sabor/aromas-organicos/page/3/</page>
@@ -178,6 +185,9 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <remove>,</remove>
         <remove>Aroma</remove>
         <remove>Orgánico</remove>
+        <remove>10ml</remove>
+        <remove>20ml</remove>
+
         <page name="ORGANICOS"><![CDATA[https://www.bulevar44.com/11-aromas?q=Tipo-Aroma+Orgánico]]></page> 
     </shop>       
   
@@ -198,6 +208,9 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <remove>(Orgánico)</remove>
         <remove>Aroma</remove>
         <remove>by</remove>
+        <remove>10ml</remove>
+        <remove>20ml</remove>
+
         <page name="LA TABACCHERIA">https://www.sinhumo-sevilla.net/952-la-tabaccheria</page>
         <page name="ANGOLO DELLA GUANCIA">https://www.sinhumo-sevilla.net/1172-aromas-angolo-della-guancia</page>
     </shop> 
@@ -216,7 +229,10 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <pPComments>//ol[@class='commentlist']/li//div[@class='description']</pPComments>  
         </find>
         <remove>-</remove>
+        <remove>10ml</remove>
+        <remove>20ml</remove>       
         <remove>Organico Microfiltrado</remove>
+
         <page name="ANGOLO DELLA GUANCIA">https://gomarizstore.com/aromas-adg</page>
         <page name="LA TABACCHERIA">https://gomarizstore.com/aromas-la-tabaccheria</page>
     </shop>   
@@ -236,8 +252,38 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         </find>
         <remove>-</remove>
         <remove>(Aroma)</remove>
+        <remove>10ml</remove>
+        <remove>20ml</remove>
+        <remove>Orgánico</remove>
+
         <page name="ANGOLO DELLA GUANCIA">https://sapporet.es/aromas?q=Marca-Angolo+Della+Guancia</page>
         <page name="LA TABACCHERIA">https://sapporet.es/aromas?q=Marca-La+Tabaccheria</page>
+    </shop>    
+
+    <shop name="EsmokingSpain" country="spain" currency="EUR">
+        <baseUri>https://www.esmokingspain.es</baseUri>
+        <!--<pricePlus>1.21</pricePlus>-->
+        <find>
+            <product>//div[@class='product-item']</product>
+            <name>.//div[@class='body']/div[@class='title']/a</name>
+            <price>.//div[@class='prices']/div[contains(@class, 'price-current')]</price>
+            <uri>.//div[@class='body']/div[@class='title']/a</uri>
+            <special>.//div[@class='prices']/div[@class='price-prev']</special>
+            <specialPrice>.//div[@class='prices']/div[contains(@class, 'name product-title')]</specialPrice>
+            <hasReviews>.//div[@class='iqitreviews-simple']</hasReviews>
+            <!-- Product Page -->
+            <pPComments>//div[@class='comment' and @itemprop='reviewBody']</pPComments>            
+        </find>
+        <remove>10ml</remove>
+        <remove>20ml</remove>
+        <remove>Aroma</remove>
+        <remove>Orgánico</remove>
+        
+        <page name="LA TABACCHERIA"><![CDATA[https://www.esmokingspain.es/tabaccheria-m-344.html?page=1&language=es]]></page>
+        <page name="LA TABACCHERIA"><![CDATA[https://www.esmokingspain.es/tabaccheria-m-344.html?page=2&language=es]]></page>
+        <page name="ADG"><![CDATA[https://www.esmokingspain.es/angolo-della-guancia-m-458.html?page=1&language=es]]></page>
+        <page name="ADG"><![CDATA[https://www.esmokingspain.es/angolo-della-guancia-m-458.html?page=2&language=es]]></page>
+        
     </shop>             
      
     <shop name="Smo-kingshop.it" country="italy" currency="EUR">
@@ -253,6 +299,11 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <!-- Product Page -->
             <pPComments>//ol[@class='commentlist']/li//div[@class='description']</pPComments>             
         </find>
+        <remove>10ml</remove>
+        <remove>20ml</remove>
+        <remove>Aroma</remove>
+        <remove>Orgánico</remove>
+        
         <page name="AZHAD´S ELIXIRS">https://www.smo-kingshop.it/it/196-azhad-s</page>
         <page name="AZHAD´S ELIXIRS">https://www.smo-kingshop.it/it/129-azhad-s</page>
         <page name="LA TABACCHERIA">https://www.smo-kingshop.it/it/1593-la-tabaccheria-liquido-pronto</page>
@@ -276,6 +327,11 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         </find>   
         <remove>–</remove>    
         <remove>.</remove>
+        <remove>10ml</remove>
+        <remove>20ml</remove>
+        <remove>Aroma</remove>
+        <remove>Orgánico</remove>
+
         <page name="AZHAD´S ELIXIRS">https://www.tisvapo.it/aromi/azhads-elixir/?count=500</page>
         <page name="ANGOLO DELLA GUANCIA">https://www.tisvapo.it/aromi/angolo-della-guancia/?count=500</page>
         <page name="BLENDFEEL">https://www.tisvapo.it/aromi/blendfeel/?count=500</page>
