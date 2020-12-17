@@ -36,6 +36,7 @@ public class LoadPage {
     private static String country = "";
     private static String currency = "EUR";
     private static String uri = "";
+    private static String uriStringRemoveAfter = "";
     private static String name = "";
     
     private static String findProduct = "";
@@ -48,6 +49,8 @@ public class LoadPage {
     
     private static String findSpecial = "";
     private static String findSpecialPrice = "";
+    
+    private static String findNoStock = "";
     
     private static String findHasReviews = "";
     
@@ -68,6 +71,7 @@ public class LoadPage {
         country = "";
         currency = "EUR";
         uri = "";
+        uriStringRemoveAfter = "";
         name = "";
 
         findProduct = "";
@@ -76,6 +80,7 @@ public class LoadPage {
         findUri = "";
         findSpecial = "";  
         findSpecialPrice = "";
+        findNoStock = "";
         findHasReviews = "";
         
         //Product page
@@ -113,6 +118,10 @@ public class LoadPage {
         uri = tUri;  
     }
     
+    public void setUriRemoveStringAfter(String str){
+        uriStringRemoveAfter = str;  
+    }
+    
     public void setName(String tName){
         name = tName;
     }
@@ -133,6 +142,9 @@ public class LoadPage {
     }         
     public void setFindSpecialPrice(String tFindSpecialPrice){
         findSpecialPrice = tFindSpecialPrice;
+    }         
+    public void setFindNoStock(String tFindNoStock){
+        findNoStock = tFindNoStock;
     }         
     public void setFindHasReviews(String tFindHasReviews){
         findHasReviews = tFindHasReviews;
@@ -172,9 +184,9 @@ public class LoadPage {
                 //webClient.waitForBackgroundJavaScript(60 * 1000);
                 System.out.println(page.getBaseURI());
 
-                List<HtmlDivision> products = page.getByXPath(findProduct);
+                List<DomElement> products = page.getByXPath(findProduct);
                 System.out.println("Articulos en la pagina " + products.size());
-                for (HtmlDivision product : products) {
+                for (DomElement product : products) {
                     //brand
                     System.out.print(getBrand(getProductName(product.getFirstByXPath(findName))));
 
@@ -199,6 +211,8 @@ public class LoadPage {
                         myProduct.setPrice(writePrice(product.getFirstByXPath(findPrice)));
                     }
                     //System.out.println(myProduct.toString());
+                    
+                    myProduct.setStock(writeStock(product.getFirstByXPath(findNoStock)));
  
                     //comentarios
                     if(product.getFirstByXPath(findHasReviews) != null){
@@ -366,8 +380,11 @@ public class LoadPage {
         return var;
     }
 
-    public String writeUri(HtmlElement eUri){        
+    public String writeUri(HtmlElement eUri){
         String var = eUri.getAttribute("href");
+        if(!uriStringRemoveAfter.equals(""))
+            var = var.split(uriStringRemoveAfter)[0];
+        
         System.out.print(" || " + var);   
         return var;
     }
@@ -377,6 +394,21 @@ public class LoadPage {
         if (e != null && !e.getTextContent().equals("")){
             System.out.print(" || OFERTA ");
             var = true;
+        }
+        return var;
+    }   
+    
+    /**
+     * Si el elemento existe o contiene algo entonces devuelve false de que
+     * no hay stock de este producto
+     * @param e
+     * @return 
+     */
+    public boolean writeStock(HtmlElement e){
+        boolean var = true;
+        if (e != null && !e.getTextContent().equals("")){
+            System.out.print(" || NO STOCK ");
+            var = false;
         }
         return var;
     }    

@@ -145,6 +145,7 @@ public final class LoadXMLIni {
                     lPage.setCurrency(eShop.getAttribute("currency"));
                     lPage.setCurrencies(currencies);
                     lPage.setBaseUri(eShop.getElementsByTagName("baseUri").item(0).getTextContent());
+                    lPage.setUriRemoveStringAfter(eShop.getElementsByTagName("uriRemoveStringAfter").item(0).getTextContent());
                     Node pricePlus = eShop.getElementsByTagName("pricePlus").item(0);
                     if(pricePlus != null){
                         if (pricePlus.getNodeType() == Node.ELEMENT_NODE) {
@@ -164,6 +165,7 @@ public final class LoadXMLIni {
                         lPage.setFindUri(eFind.getElementsByTagName("uri").item(0).getTextContent());                  
                         lPage.setFindSpecial(eFind.getElementsByTagName("special").item(0).getTextContent());
                         lPage.setFindSpecialPrice(eFind.getElementsByTagName("specialPrice").item(0).getTextContent());
+                        lPage.setFindNoStock(eFind.getElementsByTagName("noStock").item(0).getTextContent());
                         lPage.setFindHasReviews(eFind.getElementsByTagName("hasReviews").item(0).getTextContent());
                         //Product Page
                         lPage.setPPComments(eFind.getElementsByTagName("pPComments").item(0).getTextContent());

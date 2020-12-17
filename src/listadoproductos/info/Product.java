@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlRootElement(name = "product")
 @XmlType(propOrder = { "name", "brand", "uri", "price", "isSpecial"
-        , "shopName", "shopCountry", "shopUri", "brandUri", "percent", "reviews" })
+        , "shopName", "shopCountry", "shopUri", "brandUri", "percent", "reviews", "stock" })
 public class Product {
     @XmlAttribute
     private String id;
@@ -45,6 +45,7 @@ public class Product {
     private String uri;
     private String price;
     private boolean isSpecial;
+    private boolean stock;
     private String brandUri;
     private String percent;
     private List<String> reviews = new ArrayList<String>();
@@ -54,7 +55,7 @@ public class Product {
     
     public Product(String shopName, String shopCountry, String shopUri, String name, String brand,
             String uri, String price, boolean isSpecial, String brandUri,
-            String percent, List<String> reviews){
+            String percent, List<String> reviews, boolean stock){
         this.id = uri;
         this.shopName = shopName;
         this.shopCountry = shopCountry;
@@ -64,6 +65,7 @@ public class Product {
         this.uri = uri;
         this.price = price;
         this.isSpecial = isSpecial;
+        this.stock = stock;
         this.brandUri = brandUri;
         this.percent = percent;
         this.reviews = reviews;
@@ -146,6 +148,15 @@ public class Product {
     @XmlElement
     public void setIsSpecial(boolean isSpecial){
         this.isSpecial = isSpecial;
+    }
+    
+    public boolean getStock(){
+        return this.stock;
+    }   
+    
+    @XmlElement
+    public void setStock(boolean stock){
+        this.stock = stock;
     }
     
     public String getBrandUri(){
