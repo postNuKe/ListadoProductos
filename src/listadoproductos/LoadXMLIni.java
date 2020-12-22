@@ -5,6 +5,7 @@
  */
 package listadoproductos;
 
+import listadoproductos.info.Brand;
 import listadoproductos.info.Product;
 import listadoproductos.info.Listado;
 import java.io.File;
@@ -23,9 +24,7 @@ import org.w3c.dom.Element;
 import com.sun.xml.bind.marshaller.*;
 import java.io.IOException;
 import java.io.Writer;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Iterator;
+import listadoproductos.info.BrandProduct;
 
 /**
  *
@@ -42,7 +41,7 @@ public final class LoadXMLIni {
             //cargamos las monedas
             Currency currencies = new Currency();
             setPathListado(pathListado);
-            ArrayList<Product> productList = new ArrayList<Product>();
+            ArrayList<Product> productList = new ArrayList<>();
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
             //PrintStream fileOut = new PrintStream("./ofertas/" + formatter.format(date) + ".txt");
             //System.setOut(fileOut);        
@@ -64,10 +63,9 @@ public final class LoadXMLIni {
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
             
-            //cogemos las marcas
+            //MARCAS
             //System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             NodeList nBrands = doc.getElementsByTagName("brand");
-
             for (int temp = 0; temp < nBrands.getLength(); temp++) {
                 Node nBrand = nBrands.item(temp);
                 if (nBrand.getNodeType() == Node.ELEMENT_NODE) {
@@ -87,22 +85,41 @@ public final class LoadXMLIni {
                             //System.out.print("||" + eEqual.getTextContent());
                         }
                     }
-                    /*
-                    //collection
-                    Node nCollection = eBrand.getElementsByTagName("collection").item(0);
-                    if(nCollection.getNodeType() == Node.ELEMENT_NODE){
+                    
+                    //collection, productos marcados con porcentaje concreto,
+                    //con youtubes etc...
+                    Node nCollection = eBrand.getElementsByTagName("collection").item(0);                    
+                    if(nCollection != null && nCollection.getNodeType() == Node.ELEMENT_NODE){
                         Element eProduct = (Element) nCollection;
                         NodeList nProducts = eProduct.getElementsByTagName("product");
                         for (int i = 0; i < nProducts.getLength(); i++) {
                             Node nProduct = nProducts.item(i);
                             if (nProduct.getNodeType() == Node.ELEMENT_NODE) {
-                                Element eEqual = (Element) nProduct;
-                                brand.addEquals(eEqual.getTextContent());
-                                //System.out.print("||" + eEqual.getTextContent());
+                                BrandProduct brandProduct = new BrandProduct();
+                                eProduct = (Element) nProduct;
+                                
+                                brandProduct.setName(eProduct.getAttribute("name"));
+                                Node nPercent = eProduct.getElementsByTagName("percent").item(0);
+                                if(nPercent != null){
+                                    if (nPercent.getNodeType() == Node.ELEMENT_NODE) {
+                                        brandProduct.setPercent(nPercent.getTextContent());
+                                    }
+                                }                                
+                                NodeList nReviews = eProduct.getElementsByTagName("youtubeReview");
+                                for (int j = 0; j < nReviews.getLength(); j++) {
+                                    Node nReview = nReviews.item(j);
+                                    if (nReview.getNodeType() == Node.ELEMENT_NODE) {
+                                        Element eReview = (Element) nReview;
+                                        brandProduct.addYoutubeReviews(eReview.getTextContent());
+                                        //System.out.print("||" + eEqual.getTextContent());
+                                    }
+                                }
+                                brand.addProduct(brandProduct);
+                                System.out.println(brandProduct.toString());
                             }
                         }
                     }                 
-                    */
+                    
                     brands.add(brand);
                     //System.out.println("");
                 }
@@ -193,8 +210,8 @@ public final class LoadXMLIni {
                     lPage.setRRegexStrings(rStrings);
 
                     //PAGES DENTRO DE ESTA SHOP
-                   NodeList nPages = eShop.getElementsByTagName("page");
-                   for (int temp2 = 0; temp2 < nPages.getLength(); temp2++) {
+                    NodeList nPages = eShop.getElementsByTagName("page");
+                    for (int temp2 = 0; temp2 < nPages.getLength(); temp2++) {
                         Node nPage = nPages.item(temp2);
                         //System.out.println("\nCurrent Element :" + nPage.getNodeName()); 
                         if (nShop.getNodeType() == Node.ELEMENT_NODE) {
@@ -206,8 +223,8 @@ public final class LoadXMLIni {
                             lPage.load(); 
                             listPages.add(ePage.getTextContent());
                         }
-                   }
-                   productList.addAll(lPage.getProductList());
+                    }
+                    productList.addAll(lPage.getProductList());
                    
                 }
             }

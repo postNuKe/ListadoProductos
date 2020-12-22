@@ -5,6 +5,7 @@
  */
 package listadoproductos;
 
+import listadoproductos.info.Brand;
 import listadoproductos.info.Product;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.regex.*;  
+import listadoproductos.info.BrandProduct;
+import listadoproductos.lib.Text;
 import org.apache.commons.logging.LogFactory;
 import org.jsoup.Jsoup;
 
@@ -90,8 +93,8 @@ public class LoadPage {
         
         pricePlus = 1.0;
         
-        productList = new ArrayList<Product>();
-        brands = new ArrayList<Brand>();
+        productList = new ArrayList<>();
+        brands = new ArrayList<>();
         
     }
     
@@ -210,7 +213,7 @@ public class LoadPage {
                     Brand brand = getBrand(getProductName(product.getFirstByXPath(findName)));
                     myProduct.setBrand(brand.getName());
                     myProduct.setBrandUri(brand.getUri());
-                    myProduct.setPercent(brand.getPercent());
+                    myProduct.setPercent(brand.getPercent(myProduct.getName()));
                     
                     myProduct.setUri(writeUri(product.getFirstByXPath(findUri)));
                     myProduct.setId();
@@ -246,7 +249,7 @@ public class LoadPage {
                                 //comentarios de la pagina del producto
                                 for (HtmlDivision comment : comments) {
                                     //System.out.println(comment.getTextContent());
-                                    myProduct.addReview(toHTML(html2text(comment.getTextContent()).trim()));
+                                    myProduct.addReview(Text.toHTML(Text.html2text(comment.getTextContent()).trim()));
                                 }
                             }catch (IOException e) {
                                 /*me dio un error de conexion ssl en una web asi que mejor 
@@ -257,7 +260,19 @@ public class LoadPage {
                             }
                         }
                     }
-
+                    
+                    //youtubeReviews
+                    for (BrandProduct brandProduct : brand.getProducts()) {
+                        //miramos que el nombre del producto este dentro de
+                        //algun producto de la marca
+                        if(myProduct.getName().contains(Text.toHTML(brandProduct.getName()))){
+                            if(!brandProduct.getPercent().isEmpty()){
+                                myProduct.setPercent(brandProduct.getPercent());
+                            }
+                            //anadimos las reviews de youtube
+                            myProduct.setYoutubeReviews(brandProduct.getYoutubeReviews());                        
+                        }  
+                    }  
 
                     productList.add(myProduct);
 
@@ -308,7 +323,7 @@ public class LoadPage {
             }else{
                 cellText = eName.getVisibleText();
             }
-            var = toHTML(html2text(removeStrings(cellText)).trim());
+            var = Text.toHTML(Text.html2text(removeStrings(cellText)).trim());
             System.out.print(" || " + var); 
         }
         return var;
@@ -320,7 +335,7 @@ public class LoadPage {
      * @return 
      */
     public String writePrice(DomElement ePrice){  
-        String var = html2text(ePrice.getTextContent()).replace(",", ".").trim();
+        String var = Text.html2text(ePrice.getTextContent()).replace(",", ".").trim();
         
         //Si la moneda no es el Euro, eliminar la moneda, calcular el precio
         //en euros, y añadirle el simbolo del euro
@@ -424,25 +439,7 @@ public class LoadPage {
         return var;
     }    
     
-    public static String html2text(String html) {
-        return Jsoup.parse(html).text();
-    } 
-    /**
-     * parsea caracteres especiales
-     * @param str
-     * @return 
-     */
-    public String toHTML(String str) {
-        String out = "";
-        for (char c: str.toCharArray()) {
-            if(!Character.isLetterOrDigit(c))
-                out += String.format("&#x%x;", (int)c);
-            else
-                out += String.format("%s", c);
 
-        }
-        return out;
-    }
     /**
      * Elimina de una cadena las cadenas del tag <remove> en cada page y tambien
      * elimina las marcas

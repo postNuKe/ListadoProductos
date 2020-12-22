@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlRootElement(name = "product")
 @XmlType(propOrder = { "name", "brand", "uri", "price", "isSpecial"
-        , "shopName", "shopCountry", "shopUri", "brandUri", "percent", "reviews", "stock" })
+        , "shopName", "shopCountry", "shopUri", "brandUri", "percent"
+        , "reviews", "stock", "youtubeReviews" })
 public class Product {
     @XmlAttribute
     private String id;
@@ -48,14 +49,16 @@ public class Product {
     private boolean stock;
     private String brandUri;
     private String percent;
-    private List<String> reviews = new ArrayList<String>();
+    private List<String> reviews = new ArrayList<>();
+    private List<String> youtubeReviews = new ArrayList<>();
     
     public Product() {
     }
     
     public Product(String shopName, String shopCountry, String shopUri, String name, String brand,
             String uri, String price, boolean isSpecial, String brandUri,
-            String percent, List<String> reviews, boolean stock){
+            String percent, List<String> reviews, boolean stock,
+            List<String> youtubeReviews){
         this.id = uri;
         this.shopName = shopName;
         this.shopCountry = shopCountry;
@@ -69,6 +72,7 @@ public class Product {
         this.brandUri = brandUri;
         this.percent = percent;
         this.reviews = reviews;
+        this.youtubeReviews = youtubeReviews;
     }
     
     public String getId() {
@@ -191,6 +195,20 @@ public class Product {
         this.reviews = reviews;
     }
     
+    public List<String> getYoutubeReviews(){
+        return this.youtubeReviews;
+    }   
+    
+    public void addYoutubeReview(String youtubeReview){
+        this.youtubeReviews.add(youtubeReview);
+    }
+    
+    @XmlElementWrapper(name = "youtubeReviews")
+    @XmlElement(name = "youtubeReview")
+    public void setYoutubeReviews(List<String> youtubeReviews){
+        this.youtubeReviews = youtubeReviews;
+    }
+    
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Product{");
@@ -205,6 +223,7 @@ public class Product {
         sb.append(", brandUri='").append(this.brandUri).append('\'');
         sb.append(", percent='").append(this.percent).append('\'');
         sb.append(", reviews='").append(this.reviews.toString()).append('\'');
+        sb.append(", youtubeReviews='").append(this.youtubeReviews.toString()).append('\'');
         sb.append('}');
         return sb.toString();
     }
