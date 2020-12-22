@@ -61,6 +61,8 @@ public class LoadPage {
     
     /** Remover cadenas a buscar en precio y nombre */
     private static List<String> rStrings = new ArrayList<String>();
+    /** Remover entre valores en las cadenas a buscar en precio y nombre */
+    private static List<String> rRegexStrings = new ArrayList<String>();
     
     private Currency currencies;
 
@@ -152,6 +154,15 @@ public class LoadPage {
 
     public void setRStrings(List<String> array){
         rStrings = array;
+    }
+    /**
+     * Establece las cadenas a eliminar entre valores. Debe de contener el 
+     * asterisco entre las cadenas a buscar.
+     * Ejemplo: (*)
+     * @param array 
+     */
+    public void setRRegexStrings(List<String> array){
+        rRegexStrings = array;
     }
     
     public void setBrands(ArrayList<Brand> brands){
@@ -447,6 +458,11 @@ public class LoadPage {
                         Pattern.LITERAL | Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE)
                         .matcher(str)
                         .replaceAll(Matcher.quoteReplacement(""));             
+        }
+        //eliminamos cadenas con expresiones regulares
+        for( String oneItem : rRegexStrings ) {
+            //str = str.replace(oneItem, "");
+            str = str.replaceAll(oneItem, "");
         }
         //Eliminamos tambien las marcas
         for (Brand brand : this.brands) {

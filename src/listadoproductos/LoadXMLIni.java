@@ -176,12 +176,21 @@ public final class LoadXMLIni {
 
                     //remove cadenas de texto
                     NodeList nRemoves = eShop.getElementsByTagName("remove");
-                    List<String> rStrings = new ArrayList<String>();
+                    List<String> rStrings = new ArrayList<>();
                     for (int temp2 = 0; temp2 < nRemoves.getLength(); temp2++) {
                         Node nRemove = nRemoves.item(temp2); 
                         rStrings.add(nRemove.getTextContent());
                     }
                     lPage.setRStrings(rStrings);
+                    
+                    //remove Between cadenas de texto
+                    nRemoves = eShop.getElementsByTagName("removeRegex");
+                    rStrings = new ArrayList<>();
+                    for (int temp2 = 0; temp2 < nRemoves.getLength(); temp2++) {
+                        Node nRemove = nRemoves.item(temp2); 
+                        rStrings.add(nRemove.getTextContent());
+                    }
+                    lPage.setRRegexStrings(rStrings);
 
                     //PAGES DENTRO DE ESTA SHOP
                    NodeList nPages = eShop.getElementsByTagName("page");
