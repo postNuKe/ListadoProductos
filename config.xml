@@ -6,11 +6,6 @@ Brands -> Son las marcas por defecto, donde se buscará en los nombres de los
 productos. Si no encuentra ninguna de estas (los equivalentes) entonces pone como
 marca el que esté por defecto en el tag <page name="MARCA">. Además elimina la
 marca del nombre si la encuentra.
-find->product ACABAR EN UN DIV
-find->name ACABAR EN UN ELEMENT (NO DIV, ARTICLE, PAGE)
-find->price ACABAR EN UN ELEMENT
-find->uri ACABAR EN UN ANCHOR
-find->special ACABAR EN UN ELEMENT (NO DIV, ARTICLE, PAGE)
 Existe la posibilidad de usar dentro de shop el tag <pricePlus>1.21</pricePlus> para añadir
 un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
 -->
@@ -26,17 +21,26 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <website>https://www.angolodellaguancia.it/</website>
         <percent>12%</percent>
         <collection>
-            <product name="Mandingo">
-                <percent>10%</percent>
-                <youtubeReview>https://youtu.be/TkGWd9bircA</youtubeReview>
-                <youtubeReview>https://youtu.be/rHH4F2tf6q4</youtubeReview>
-            </product>
             <product name="3 Di Quadri">
                 <youtubeReview>https://youtu.be/80_N0ar4U2w</youtubeReview>
             </product>
             <product name="9 Di Picche">
                 <youtubeReview>https://youtu.be/iHSoYWQPeT8</youtubeReview>
                 <youtubeReview>https://youtu.be/FpBWuRv2J5s</youtubeReview>
+            </product>
+            <product name="Cigarette 1">
+                <youtubeReview>https://youtu.be/z0zmD5510Mc</youtubeReview>
+            </product>
+            <product name="Double">
+                <youtubeReview>https://youtu.be/2War6PUb6Vo</youtubeReview>
+            </product>
+            <product name="Eden">
+                <youtubeReview>https://youtu.be/REcrHBA7qU0</youtubeReview>
+            </product>
+            <product name="Mandingo">
+                <percent>5%-10%</percent>
+                <youtubeReview>https://youtu.be/TkGWd9bircA</youtubeReview>
+                <youtubeReview>https://youtu.be/rHH4F2tf6q4</youtubeReview>
             </product>
             <product name="Mr Jack">
                 <youtubeReview>https://youtu.be/5kN4n_7HQIs</youtubeReview>
@@ -46,19 +50,10 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <product name="Pueblo">
                 <youtubeReview>https://youtu.be/z0zmD5510Mc</youtubeReview>
             </product>
-            <product name="Cigarette 1">
-                <youtubeReview>https://youtu.be/z0zmD5510Mc</youtubeReview>
-            </product>
-            <product name="Eden">
-                <youtubeReview>https://youtu.be/REcrHBA7qU0</youtubeReview>
-            </product>
             <product name="Reserve Cafe">
                 <youtubeReview>https://youtu.be/REcrHBA7qU0</youtubeReview>
             </product>
             <product name="Virginia Plus">
-                <youtubeReview>https://youtu.be/2War6PUb6Vo</youtubeReview>
-            </product>
-            <product name="Double">
                 <youtubeReview>https://youtu.be/2War6PUb6Vo</youtubeReview>
             </product>
         </collection>
@@ -81,6 +76,10 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
                 <youtubeReview>https://youtu.be/lyi54BsQ0ig</youtubeReview>
                 <youtubeReview>https://youtu.be/HGbQ5BbVKR0</youtubeReview>
             </product>
+            <product name="Contrappunto">
+                <youtubeReview>https://youtu.be/ka65ufJG2aw</youtubeReview>
+                <youtubeReview>https://youtu.be/-JRVobYdDWE</youtubeReview>
+            </product>
             <product name="Dark Bite">
                 <youtubeReview>https://youtu.be/Zc4Ry8Qs130</youtubeReview>
             </product>
@@ -90,9 +89,8 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <product name="Etrusco">
                 <youtubeReview>https://youtu.be/Q9J9oRqA13k</youtubeReview>
             </product>
-            <product name="Contrappunto">
-                <youtubeReview>https://youtu.be/ka65ufJG2aw</youtubeReview>
-                <youtubeReview>https://youtu.be/-JRVobYdDWE</youtubeReview>
+            <product name="Gold America">
+                <youtubeReview>https://youtu.be/426LbHSq2iA</youtubeReview>
             </product>
             <product name="Old Times">
                 <youtubeReview>https://youtu.be/PEUtN-1a5X8</youtubeReview>
@@ -100,9 +98,6 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             </product>
             <product name="Turkish Extradry">
                 <youtubeReview>https://youtu.be/SeoWDHpIzhE</youtubeReview>
-            </product>
-            <product name="Gold America">
-                <youtubeReview>https://youtu.be/426LbHSq2iA</youtubeReview>
             </product>
         </collection>        
     </brand>
@@ -112,24 +107,49 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <website>https://blendfeel.com/es-ES/index_es.html</website>
         <percent>10%</percent>
         <collection>
-            <product name="Latakia Raw">
-                <youtubeReview>https://youtu.be/61QKSkztqck</youtubeReview>
+            <product name="Besuki Raw">
+                <youtubeReview>https://youtu.be/ubsNp9ic2G8</youtubeReview>
             </product>
             <product name="Bodeguita">
                 <youtubeReview>https://youtu.be/-rC5mudqm4A</youtubeReview>
                 <youtubeReview>https://youtu.be/YuNe_l5zwco</youtubeReview>
             </product>
-            <product name="Pepper Farm">
-                <youtubeReview>https://youtu.be/46vPgM1Zduk</youtubeReview>
+            <product name="Borkum Black">
+                <youtubeReview>https://youtu.be/M7SbG5vtr9I</youtubeReview>
+            </product>
+            <product name="Burlesque">
+                <youtubeReview>https://youtu.be/-mxDMMLhkZw</youtubeReview>
+            </product>
+            <product name="Cuban Blend">
+                <youtubeReview>https://youtu.be/1DZ1XhoKCJI</youtubeReview>
+            </product>
+            <product name="Golden Cavendish">
+                <youtubeReview>https://youtu.be/yYTGtZ8F6GY</youtubeReview>
+            </product>
+            <product name="Habanos Grand Reserve">
+                <youtubeReview>https://youtu.be/vFLKtp6xYkE</youtubeReview>
+                <youtubeReview>https://youtu.be/0ZTXvbFP2mM</youtubeReview>
+            </product>
+            <product name="Hell\'s key">
+                <youtubeReview>https://youtu.be/INIF7fdN7yM</youtubeReview>
+                <youtubeReview>https://youtu.be/6vyijVeB9Vs</youtubeReview>
             </product>
             <product name="Irish Black">
                 <youtubeReview>https://youtu.be/INIF7fdN7yM</youtubeReview>
                 <youtubeReview>https://youtu.be/003xkxImZ1w</youtubeReview>
                 <youtubeReview>https://youtu.be/w26GVnnIoGg</youtubeReview>
             </product>
-            <product name="Hell\'s key">
-                <youtubeReview>https://youtu.be/INIF7fdN7yM</youtubeReview>
+            <product name="Kentucky Raw">
                 <youtubeReview>https://youtu.be/6vyijVeB9Vs</youtubeReview>
+            </product>
+            <product name="Kentucky Reserve">
+                <youtubeReview>https://youtu.be/Wug-8uhjiEM</youtubeReview>
+            </product>
+            <product name="Latakia Raw">
+                <youtubeReview>https://youtu.be/61QKSkztqck</youtubeReview>
+            </product>
+            <product name="Pepper Farm">
+                <youtubeReview>https://youtu.be/46vPgM1Zduk</youtubeReview>
             </product>
             <product name="Silk Road">
                 <youtubeReview>https://youtu.be/Q-2vg8sX5QA</youtubeReview>
@@ -137,31 +157,6 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <product name="Tuscan Blend">
                 <youtubeReview>https://youtu.be/0WrTRhWYoMc</youtubeReview>
                 <youtubeReview>https://youtu.be/Wug-8uhjiEM</youtubeReview>
-            </product>
-            <product name="Habanos Grand Reserve">
-                <youtubeReview>https://youtu.be/vFLKtp6xYkE</youtubeReview>
-                <youtubeReview>https://youtu.be/0ZTXvbFP2mM</youtubeReview>
-            </product>
-            <product name="Cuban Blend">
-                <youtubeReview>https://youtu.be/1DZ1XhoKCJI</youtubeReview>
-            </product>
-            <product name="Burlesque">
-                <youtubeReview>https://youtu.be/-mxDMMLhkZw</youtubeReview>
-            </product>
-            <product name="Besuki Raw">
-                <youtubeReview>https://youtu.be/ubsNp9ic2G8</youtubeReview>
-            </product>
-            <product name="Kentucky Reserve">
-                <youtubeReview>https://youtu.be/Wug-8uhjiEM</youtubeReview>
-            </product>
-            <product name="Borkum Black">
-                <youtubeReview>https://youtu.be/M7SbG5vtr9I</youtubeReview>
-            </product>
-            <product name="Golden Cavendish">
-                <youtubeReview>https://youtu.be/yYTGtZ8F6GY</youtubeReview>
-            </product>
-            <product name="Kentucky Raw">
-                <youtubeReview>https://youtu.be/6vyijVeB9Vs</youtubeReview>
             </product>
         </collection>        
 
@@ -172,6 +167,9 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <website>https://www.clamourvape.ch/</website>
         <percent>10%</percent>
         <collection>
+            <product name="Better Vape Saul Hello World">
+                <youtubeReview>https://youtu.be/9yc54s95YzY</youtubeReview>
+            </product>
             <product name="Better Vape Saul Original">
                 <youtubeReview>https://youtu.be/kbl55rWxfLw</youtubeReview>
                 <youtubeReview>https://youtu.be/YCTgb3llHTA</youtubeReview>
@@ -180,8 +178,9 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
                 <youtubeReview>https://youtu.be/IGrwl0GDuGk</youtubeReview>
                 <youtubeReview>https://youtu.be/oj1iaLRRzTc</youtubeReview>
             </product>
-            <product name="Better Vape Saul Hello World">
-                <youtubeReview>https://youtu.be/9yc54s95YzY</youtubeReview>
+            <product name="Black Cavendish">
+                <youtubeReview>https://youtu.be/CaoAkNUpU-g</youtubeReview>
+                <youtubeReview>https://youtu.be/3RIFJ1xEloQ</youtubeReview>
             </product>
             <product name="Highlands">
                 <youtubeReview>https://youtu.be/HFB_jpSThSw</youtubeReview>
@@ -190,10 +189,6 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             </product>
             <product name="Kentucky">
                 <youtubeReview>https://youtu.be/MF8eXA1QwOs</youtubeReview>
-            </product>
-            <product name="Black Cavendish">
-                <youtubeReview>https://youtu.be/CaoAkNUpU-g</youtubeReview>
-                <youtubeReview>https://youtu.be/3RIFJ1xEloQ</youtubeReview>
             </product>
             <product name="Perique">
                 <youtubeReview>https://youtu.be/79nq0dtlukg</youtubeReview>
@@ -212,18 +207,73 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <website>https://www.latabaccheria.net/en/</website>
         <percent>5%-10%</percent>
         <collection>
-            <product name="Kentucky USA">
-                <youtubeReview>https://youtu.be/IYxP_f18k4k</youtubeReview>
+            <product name="4 pod Black Cavendish">
+                <youtubeReview>https://youtu.be/cSPhyuiBUk8</youtubeReview>
+            </product>
+            <product name="4 pod E-mint">
+                <youtubeReview>https://youtu.be/8g3ZgivEbp4</youtubeReview>
+                <youtubeReview>https://youtu.be/KlQTTxEeAI0</youtubeReview>
+            </product>
+            <product name="4 pod Latakia Evolution">
+                <youtubeReview>https://youtu.be/HpgPbjIkjxQ</youtubeReview>
+            </product>
+            <product name="4 pod Perique">
+                <youtubeReview>https://youtu.be/A6MiPxnhlsE</youtubeReview>
+            </product>
+            <product name="759">
+                <youtubeReview>https://youtu.be/yKfHcFCnxKY</youtubeReview>
+            </product>
+            <product name="American Blend">
+                <youtubeReview>https://youtu.be/jo-deLwOWAM</youtubeReview>
+                <youtubeReview>https://youtu.be/qPx2FCuqNVc</youtubeReview>
+            </product>
+            <product name="Assolo">
+                <youtubeReview>https://youtu.be/AUaNFFckszs</youtubeReview>
+            </product>
+            <product name="Baffometto">
+                <youtubeReview>https://youtu.be/9xugHIxN4wk</youtubeReview>
+            </product>
+            <product name="Basma">
+                <youtubeReview>https://youtu.be/vJK1p3E7lr4</youtubeReview>
+                <youtubeReview>https://youtu.be/fkS_A-uBw9k</youtubeReview>
+                <youtubeReview>https://youtu.be/iM9PCEJnPoU</youtubeReview>
+                <youtubeReview>https://youtu.be/hO-7Ugfn4TY</youtubeReview>
+            </product>
+            <product name="Bezuki">
+                <youtubeReview>https://youtu.be/2Ka3ltv1JC8</youtubeReview>
+                <youtubeReview>https://youtu.be/4CT63ORYckc</youtubeReview>
+            </product>
+            <product name="Black and Berries">
+                <youtubeReview>https://youtu.be/neueGqY4h2g</youtubeReview>
+            </product>
+            <product name="Black Cavendish">
+                <youtubeReview>https://youtu.be/6Szu_1GiRbs</youtubeReview>
+                <youtubeReview>https://youtu.be/bNgjaaQAsbY</youtubeReview>
+                <youtubeReview>https://youtu.be/VHeRbe8MnuY</youtubeReview>
+            </product>
+            <product name="Burley">
+                <youtubeReview>https://youtu.be/LgzljW1yC8g</youtubeReview>
+                <youtubeReview>https://youtu.be/93_UIsyKE4Y</youtubeReview>
+                <youtubeReview>https://youtu.be/tUWpSB3B8xY</youtubeReview>
+            </product>
+            <product name="English Mixture">
+                <youtubeReview>https://youtu.be/LpY9VXOlThc</youtubeReview>
+            </product>
+            <product name="Harmonium">
+                <youtubeReview>https://youtu.be/VlCYRw1ENw0</youtubeReview>
+                <youtubeReview>https://youtu.be/rBdLVNpQEaw</youtubeReview>
+            </product>
+            <product name="Il Sigaro Italiano">
+                <youtubeReview>https://youtu.be/g9vkhzmO8SQ</youtubeReview>
+                <youtubeReview>https://youtu.be/dOvLC9x7pXk</youtubeReview>
             </product>
             <product name="Kentucky">
                 <youtubeReview>https://youtu.be/IJAWBRc4Dxg</youtubeReview>
                 <youtubeReview>https://youtu.be/evt_ACSQJjE</youtubeReview>
                 <youtubeReview>https://youtu.be/Zljttan-GUs</youtubeReview>
             </product>
-            <product name="Black Cavendish">
-                <youtubeReview>https://youtu.be/6Szu_1GiRbs</youtubeReview>
-                <youtubeReview>https://youtu.be/bNgjaaQAsbY</youtubeReview>
-                <youtubeReview>https://youtu.be/VHeRbe8MnuY</youtubeReview>
+            <product name="Kentucky USA">
+                <youtubeReview>https://youtu.be/IYxP_f18k4k</youtubeReview>
             </product>
             <product name="Latakia">
                 <youtubeReview>https://youtu.be/SntEkl8y2gs</youtubeReview>
@@ -231,22 +281,17 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
                 <youtubeReview>https://youtu.be/6tnj9L_7v8g</youtubeReview>
                 <youtubeReview>https://youtu.be/VK953SVgHQI</youtubeReview>
             </product>
-            <product name="Perique">
-                <youtubeReview>https://youtu.be/GMoY3I0-frs</youtubeReview>
-                <youtubeReview>https://youtu.be/UvjsUtI4uOY</youtubeReview>
-                <youtubeReview>https://youtu.be/vTJBmdYdSz8</youtubeReview>
+            <product name="Mary\'s Pie">
+                <youtubeReview>https://youtu.be/llNNzL5nSS0</youtubeReview>
             </product>
-            <product name="Wild West">
-                <youtubeReview>https://youtu.be/pmK2kFll3PE</youtubeReview>
-                <youtubeReview>https://youtu.be/qu7cPfOb4k4</youtubeReview>
-            </product>
-            <product name="Piloto Cubano">
-                <youtubeReview>https://youtu.be/q7nV8wpaYTg</youtubeReview>
-                <youtubeReview>https://youtu.be/CoaNe9BSWdk</youtubeReview>
-            </product>
-            <product name="Re Nero">
-                <youtubeReview>https://youtu.be/zdmeVAqXnYQ</youtubeReview>
-                <youtubeReview>https://youtu.be/l3p8G6WION0</youtubeReview>
+            <product name="Maryland">
+                <youtubeReview>https://youtu.be/OKzSxZO9yQQ</youtubeReview>
+                <youtubeReview>https://youtu.be/T28R6CW5fBI</youtubeReview>
+            </product>            
+            <product name="Mata Fina">
+                <youtubeReview>https://youtu.be/rD2P7yXTFOQ</youtubeReview>
+                <youtubeReview>https://youtu.be/dY5nHS0a0OE</youtubeReview>
+                <youtubeReview>https://youtu.be/E6MpWGd0rvo</youtubeReview>
             </product>
             <product name="Mixture N1">
                 <youtubeReview>https://youtu.be/JH2qj0SKqXA</youtubeReview>
@@ -256,76 +301,26 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
                 <youtubeReview>https://youtu.be/h25-DK7ADmI</youtubeReview>
                 <youtubeReview>https://youtu.be/0ZTXvbFP2mM</youtubeReview>
             </product>
-            <product name="Mata Fina">
-                <youtubeReview>https://youtu.be/rD2P7yXTFOQ</youtubeReview>
-                <youtubeReview>https://youtu.be/dY5nHS0a0OE</youtubeReview>
-                <youtubeReview>https://youtu.be/E6MpWGd0rvo</youtubeReview>
-            </product>
-            <product name="Maryland">
-                <youtubeReview>https://youtu.be/OKzSxZO9yQQ</youtubeReview>
-                <youtubeReview>https://youtu.be/T28R6CW5fBI</youtubeReview>
-            </product>
-            <product name="Il Sigaro Italiano">
-                <youtubeReview>https://youtu.be/g9vkhzmO8SQ</youtubeReview>
-                <youtubeReview>https://youtu.be/dOvLC9x7pXk</youtubeReview>
-            </product>
-            <product name="Black and Berries">
-                <youtubeReview>https://youtu.be/neueGqY4h2g</youtubeReview>
-            </product>
-            <product name="Harmonium">
-                <youtubeReview>https://youtu.be/VlCYRw1ENw0</youtubeReview>
-                <youtubeReview>https://youtu.be/rBdLVNpQEaw</youtubeReview>
-            </product>
-            <product name="Baffometto">
-                <youtubeReview>https://youtu.be/9xugHIxN4wk</youtubeReview>
-            </product>
-            <product name="American Blend">
-                <youtubeReview>https://youtu.be/jo-deLwOWAM</youtubeReview>
-                <youtubeReview>https://youtu.be/qPx2FCuqNVc</youtubeReview>
-            </product>
-            <product name="Balkan Sobranie 759">
-                <youtubeReview>https://youtu.be/yKfHcFCnxKY</youtubeReview>
-            </product>
-            <product name="Basma">
-                <youtubeReview>https://youtu.be/vJK1p3E7lr4</youtubeReview>
-                <youtubeReview>https://youtu.be/fkS_A-uBw9k</youtubeReview>
-                <youtubeReview>https://youtu.be/iM9PCEJnPoU</youtubeReview>
-                <youtubeReview>https://youtu.be/hO-7Ugfn4TY</youtubeReview>
-            </product>
-            <product name="Burley">
-                <youtubeReview>https://youtu.be/LgzljW1yC8g</youtubeReview>
-                <youtubeReview>https://youtu.be/93_UIsyKE4Y</youtubeReview>
-                <youtubeReview>https://youtu.be/tUWpSB3B8xY</youtubeReview>
-            </product>
-            <product name="Bezuki">
-                <youtubeReview>https://youtu.be/2Ka3ltv1JC8</youtubeReview>
-                <youtubeReview>https://youtu.be/4CT63ORYckc</youtubeReview>
-            </product>
             <product name="Oriental">
                 <youtubeReview>https://youtu.be/_b-BdJIw3FA</youtubeReview>
                 <youtubeReview>https://youtu.be/oiD88m-PCyY</youtubeReview>
             </product>
-            <product name="4 pod Black Cavendish">
-                <youtubeReview>https://youtu.be/cSPhyuiBUk8</youtubeReview>
+            <product name="Perique">
+                <youtubeReview>https://youtu.be/GMoY3I0-frs</youtubeReview>
+                <youtubeReview>https://youtu.be/UvjsUtI4uOY</youtubeReview>
+                <youtubeReview>https://youtu.be/vTJBmdYdSz8</youtubeReview>
             </product>
-            <product name="4 pod Latakia Evolution">
-                <youtubeReview>https://youtu.be/HpgPbjIkjxQ</youtubeReview>
+            <product name="Piloto Cubano">
+                <youtubeReview>https://youtu.be/q7nV8wpaYTg</youtubeReview>
+                <youtubeReview>https://youtu.be/CoaNe9BSWdk</youtubeReview>
             </product>
-            <product name="4 pod E-mint">
-                <youtubeReview>https://youtu.be/8g3ZgivEbp4</youtubeReview>
-                <youtubeReview>https://youtu.be/KlQTTxEeAI0</youtubeReview>
+            <product name="Re Nero">
+                <youtubeReview>https://youtu.be/zdmeVAqXnYQ</youtubeReview>
+                <youtubeReview>https://youtu.be/l3p8G6WION0</youtubeReview>
             </product>
-            <product name="Mary\'s Pie">
-                <youtubeReview>https://youtu.be/llNNzL5nSS0</youtubeReview>
-            </product>
-            <product name="4 pod Perique">
-                <youtubeReview>https://youtu.be/A6MiPxnhlsE</youtubeReview>
-            </product>
-            <product name="English Mixture">
-                <youtubeReview>https://youtu.be/LpY9VXOlThc</youtubeReview>
-            </product>
-            <product name="Assolo">
-                <youtubeReview>https://youtu.be/AUaNFFckszs</youtubeReview>
+            <product name="Wild West">
+                <youtubeReview>https://youtu.be/pmK2kFll3PE</youtubeReview>
+                <youtubeReview>https://youtu.be/qu7cPfOb4k4</youtubeReview>
             </product>
         </collection>        
     </brand>
@@ -339,49 +334,49 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <product name="Blizzard">
                 <youtubeReview>https://youtu.be/NL7e60eLhzk</youtubeReview>
             </product>
-            <product name="Sebastian">
-                <youtubeReview>https://youtu.be/Iurx43YyTD8</youtubeReview>
-                <youtubeReview>https://youtu.be/ocgiHyvfsI8</youtubeReview>
-            </product>
-            <product name="Fohn">
-                <youtubeReview>https://youtu.be/oiyAWSEEmFc</youtubeReview>
-            </product>
-            <product name="Libeccio">
-                <youtubeReview>https://youtu.be/t1hR_26Uz2M</youtubeReview>
-            </product>
-            <product name="Zefiro">
-                <youtubeReview>https://youtu.be/fMUtO8lLDjg</youtubeReview>
-            </product>
             <product name="Buran">
                 <youtubeReview>https://youtu.be/kvmNMZihyL8</youtubeReview>
                 <youtubeReview>https://youtu.be/RkkfUY2VbXM</youtubeReview>
             </product>
-            <product name="Scirocco">
-                <youtubeReview>https://youtu.be/bbi2thtoUWI</youtubeReview>
-                <youtubeReview>https://youtu.be/3FPtXmD_zOY</youtubeReview>
+            <product name="Chinook">
+                <youtubeReview>https://youtu.be/wuJ83Fxut_o</youtubeReview>
+            </product>
+            <product name="Fohn">
+                <youtubeReview>https://youtu.be/oiyAWSEEmFc</youtubeReview>
+            </product>
+            <product name="Ghibli">
+                <youtubeReview>https://youtu.be/Cn18jTBxy_A</youtubeReview>
+            </product>
+            <product name="Il Mazzei">
+                <youtubeReview>https://youtu.be/n9wEdTqmSJo</youtubeReview>
+            </product>
+            <product name="Libeccio">
+                <youtubeReview>https://youtu.be/t1hR_26Uz2M</youtubeReview>
             </product>
             <product name="Lord Claudiu">
                 <youtubeReview>https://youtu.be/kgVevt9uQrA</youtubeReview>
                 <youtubeReview>https://youtu.be/v3_A4Yf5cWA</youtubeReview>
             </product>
-            <product name="Il Mazzei">
-                <youtubeReview>https://youtu.be/n9wEdTqmSJo</youtubeReview>
+            <product name="Mistral">
+                <youtubeReview>https://youtu.be/k2HlbEpl79w</youtubeReview>
+            </product>
+            <product name="Refined Perique">
+                <youtubeReview>https://youtu.be/CqnVpgCA-Nw</youtubeReview>
             </product>
             <product name="Sacha">
                 <youtubeReview>https://youtu.be/rPc_khoJp5c</youtubeReview>
                 <youtubeReview>https://youtu.be/P-z6UtIbvFA</youtubeReview>
             </product>
-            <product name="Ghibli">
-                <youtubeReview>https://youtu.be/Cn18jTBxy_A</youtubeReview>
+            <product name="Scirocco">
+                <youtubeReview>https://youtu.be/bbi2thtoUWI</youtubeReview>
+                <youtubeReview>https://youtu.be/3FPtXmD_zOY</youtubeReview>
             </product>
-            <product name="Chinook">
-                <youtubeReview>https://youtu.be/wuJ83Fxut_o</youtubeReview>
+            <product name="Sebastian">
+                <youtubeReview>https://youtu.be/Iurx43YyTD8</youtubeReview>
+                <youtubeReview>https://youtu.be/ocgiHyvfsI8</youtubeReview>
             </product>
-            <product name="Refined Perique">
-                <youtubeReview>https://youtu.be/CqnVpgCA-Nw</youtubeReview>
-            </product>
-            <product name="Mistral">
-                <youtubeReview>https://youtu.be/k2HlbEpl79w</youtubeReview>
+            <product name="Zefiro">
+                <youtubeReview>https://youtu.be/fMUtO8lLDjg</youtubeReview>
             </product>
         </collection>        
     </brand>
@@ -403,12 +398,6 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <website>https://www.estrattitabacchificio.it/</website>
         <percent>15%-20%</percent>
         <collection>
-            <product name="Virginia Red">
-                <youtubeReview>https://youtu.be/0VuwrBdp34c</youtubeReview>
-            </product>
-            <product name="Terroso Intenso">
-                <youtubeReview>https://youtu.be/sy75HFDBt0M</youtubeReview>
-            </product>
             <product name="Armoniosa Cremosa">
                 <youtubeReview>https://youtu.be/oK0tcaM0Jco</youtubeReview>
             </product>
@@ -419,6 +408,12 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
                 <youtubeReview>https://youtu.be/rW2cv3fwe9M</youtubeReview>
                 <youtubeReview>https://youtu.be/gMHAbvkysRg</youtubeReview>
             </product>
+            <product name="Terroso Intenso">
+                <youtubeReview>https://youtu.be/sy75HFDBt0M</youtubeReview>
+            </product>
+            <product name="Virginia Red">
+                <youtubeReview>https://youtu.be/0VuwrBdp34c</youtubeReview>
+            </product>
         </collection>          
     </brand>
     <brand>
@@ -427,20 +422,20 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         <website>https://thevapinggentlemen.club/collections/vapor-cave</website>
         <percent>10%</percent>
         <collection>
-            <product name="Navajo Rolling">
-                <youtubeReview>https://youtu.be/XNNp8FQsKGI</youtubeReview>
+            <product name="Balkanika">
+                <youtubeReview>https://youtu.be/pL4RR0HaYcQ</youtubeReview>
             </product>
-            <product name="Khymeia">
-                <youtubeReview>https://youtu.be/FdjWBRs0DD4</youtubeReview>
+            <product name="Eastwood">
+                <youtubeReview>https://youtu.be/cHKkS0XLhDM</youtubeReview>
             </product>
             <product name="Kent">
                 <youtubeReview>https://youtu.be/ZwpQ8mhDnbk</youtubeReview>
             </product>
-            <product name="Syrian Soul">
-                <youtubeReview>https://youtu.be/N1O3baQGBes</youtubeReview>
+            <product name="Khymeia">
+                <youtubeReview>https://youtu.be/FdjWBRs0DD4</youtubeReview>
             </product>
-            <product name="Balkanika">
-                <youtubeReview>https://youtu.be/pL4RR0HaYcQ</youtubeReview>
+            <product name="Navajo Rolling">
+                <youtubeReview>https://youtu.be/XNNp8FQsKGI</youtubeReview>
             </product>
             <product name="Rem">
                 <youtubeReview>https://youtu.be/MB1fIrSR_2w</youtubeReview>
@@ -448,8 +443,8 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
             <product name="Sultan">
                 <youtubeReview>https://youtu.be/3lUYnK6w_2I</youtubeReview>
             </product>
-            <product name="Eastwood">
-                <youtubeReview>https://youtu.be/cHKkS0XLhDM</youtubeReview>
+            <product name="Syrian Soul">
+                <youtubeReview>https://youtu.be/N1O3baQGBes</youtubeReview>
             </product>
         </collection>          
     </brand>

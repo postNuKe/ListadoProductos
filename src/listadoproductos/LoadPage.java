@@ -22,6 +22,7 @@ import java.util.regex.*;
 import listadoproductos.info.BrandProduct;
 import listadoproductos.lib.Text;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.text.WordUtils;
 import org.jsoup.Jsoup;
 
 /**
@@ -323,7 +324,7 @@ public class LoadPage {
             }else{
                 cellText = eName.getVisibleText();
             }
-            var = Text.toHTML(Text.html2text(removeStrings(cellText)).trim());
+            var = Text.toHTML(Text.html2text(removeStrings(WordUtils.capitalizeFully(cellText))).trim());
             System.out.print(" || " + var); 
         }
         return var;
