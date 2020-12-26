@@ -7,6 +7,7 @@ package listadoproductos;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,18 +27,23 @@ import org.xml.sax.SAXException;
  * @author user
  */
 public class ReadEmailConfig {
-    private static final String XML_EMAILS = "emails.xml";
+    //private static final String XML_EMAILS = "emails.xml";
     private static ArrayList<String> aEmails = new ArrayList<String>();
     
-    public ReadEmailConfig(String path) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+    public ReadEmailConfig(String url) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
         XPath xPath = XPathFactory.newInstance().newXPath();
-        File xmlFile = new File(path.concat(XML_EMAILS));
+        
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(true);
+        Document docXML = factory.newDocumentBuilder().parse(new URL(url).openStream());        
+        
+        //File xmlFile = new File(url);//.concat(XML_EMAILS));
+        /*
         if(!xmlFile.exists()){//si no encuentra el config puede pues que lo coja del local
             xmlFile = new File("./" + XML_EMAILS);
         }        
-        Document docXML = dBuilder.parse(xmlFile);
+*/
+        //Document docXML = dBuilder.parse(doc);
         String expression = "/root/email";
         NodeList nDocXML = 
                 (NodeList) xPath.compile(expression)
@@ -51,6 +57,10 @@ public class ReadEmailConfig {
                 aEmails.add(eDocEmail.getAttribute("id"));
             }            
         }
+        
+    }
+    
+    public ReadEmailConfig(){
         
     }
     

@@ -13,6 +13,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import listadoproductos.info.Listado;
@@ -28,6 +30,19 @@ public class ListadoProductos {
     
     /** nombre del fListado anterior para comparar con el nuevo */
     private static String LISTADO_PRODUCTOS_PREVIOUS_XML = "listado_previous.xml";
+
+    private static Map<String, String> arguments;
+    static {
+        arguments = new HashMap<>();
+        arguments.put("localListado", ""); //args[0]
+        arguments.put("emailUser", ""); //args[1]
+        arguments.put("emailPass", ""); //args[2]
+        arguments.put("XMLEmails", ""); //args[3]
+        arguments.put("remoteListado", ""); //args[4]
+        arguments.put("FTPServer", ""); //args[5]
+        arguments.put("FTPUser", ""); //args[6]
+        arguments.put("FTPPass", ""); //args[7]
+    }    
     
     /**
      * @param args the command line arguments
@@ -47,16 +62,24 @@ public class ListadoProductos {
         */
         //String localListado = "./listado.xml";
         //String remoteListado = "/public_html/data/listado.xml";
+        arguments.put("localListado", args[0]);
+        arguments.put("emailUser", args[1]);
+        arguments.put("emailPass", args[2]);
+        arguments.put("XMLEmails", args[3]);
+        if(args.length > 4){//si esta en produccion
+            arguments.put("remoteListado", args[4]); //args[4]
+            arguments.put("FTPServer", args[5]); //args[5]
+            arguments.put("FTPUser", args[6]); //args[6]
+            arguments.put("FTPPass", args[7]); //args[7]            
+        }
         
-        String localListado = args[0];
         
-        
-        LoadXMLIni loadXMLIni = new LoadXMLIni(localListado);
+        LoadXMLIni loadXMLIni = new LoadXMLIni(arguments.get("localListado"));
         
         //averiguamos el path local para empezar a comparar los archivos
-        Path path = Paths.get(localListado);
+        Path path = Paths.get(arguments.get("localListado"));
         String localPath = path.getParent().toString().concat("/");
-        File fListado = new File(localListado);
+        File fListado = new File(arguments.get("localListado"));
         String localListadoPrevious = localPath.concat(LISTADO_PRODUCTOS_PREVIOUS_XML);
         File fListadoPrevious = new File(localListadoPrevious);
         //System.out.println(fListadoPrevious.toString());
@@ -105,13 +128,14 @@ public class ListadoProductos {
             
             //mandamos el correo
             if(compareXML.getNewProducts().size() > 0 || compareXML.getSpecialProducts().size() > 0){
-                ReadEmailConfig email = new ReadEmailConfig(localPath);
+                ReadEmailConfig email = new ReadEmailConfig(arguments.get("XMLEmails"));        
                 SendEmailNewsByGmail sendEmail = new SendEmailNewsByGmail(
-                        args[1] //gmail_user_without_@gmail
-                        ,args[2] //gmail_password
-                        ,email.getEmailsToString()
+                        arguments.get("emailUser") //gmail_user_without_@gmail
+                        , arguments.get("emailPass") //gmail_password
+                        , email.getEmailsToString()
                         , compareXML.getNewProducts()
-                        , compareXML.getSpecialProducts()); //
+                        , compareXML.getSpecialProducts()
+                ); //
             }
             
         }
@@ -119,23 +143,14 @@ public class ListadoProductos {
         FileCopyUtils.copy(fListado, fListadoPrevious);
         
         
-        if(args.length > 3){//si solo ponemos la ruta del fListado en local que no de error
-            String remoteListado = args[3];
-            /*
-            String ftp = "ftp.server";
-            String username = "user";
-            String password = "1234567890";   
-            */
-            String ftp = args[4];
-            String username = args[5];
-            String password = args[6];
-
+        if(args.length > 4){//si solo ponemos la ruta del fListado en local que no de error
             new FtpFileUpload(
-                localListado
-                , remoteListado
-                , ftp
-                , username
-                , password);
+                arguments.get("localListado")
+                , arguments.get("remoteListado")
+                , arguments.get("FTPServer")
+                , arguments.get("FTPUser")
+                , arguments.get("FTPPass")
+            );
         }
          
 
