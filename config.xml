@@ -486,66 +486,41 @@ un multiplo al precio por si la tienda pone el producto sin iva por ejemplo.
         </collection>          
     </brand>
 
-    <shop name="Bulevar44.com" country="spain" currency="EUR">
-        <baseUri>https://www.bulevar44.com</baseUri>
-        <uriRemoveStringAfter/>
+    <shop name="EsmokingSpain" country="spain" currency="EUR">
+        <baseUri>https://www.esmokingspain.es</baseUri>
+        <uriRemoveStringAfter>osCsid=</uriRemoveStringAfter>
+        <!--<pricePlus>1.21</pricePlus>-->
         <find>
-            <product>//article/div[contains(@class, 'thumbnail-container')]</product>
-            <name>.//div[@class='product-description']/p[@class='an_short_description']</name>
-            <price>.//span[@class='money']</price>
-            <uri>./a</uri>
-            <special>.//a/ul/li[@class='product-flag on-sale']</special>
-            <specialPrice>.//span[@class='money']</specialPrice>
+            <product>//div[@class='product-item']</product>
+            <name>.//div[@class='body']/div[@class='title']/a</name>
+            <price>.//div[@class='prices']/div[contains(@class, 'price-current')]</price>
+            <uri>.//div[@class='body']/div[@class='title']/a</uri>
+            <special>.//div[@class='prices']/div[@class='price-prev']</special>
+            <specialPrice>.//div[@class='prices']/div[contains(@class, 'name product-title')]</specialPrice>
             <noStock>.//span[contains(@class, 'availability-list-out-of-stock')]</noStock>
-            <hasReviews>.//div[@class='star-rating']</hasReviews>
+            <hasReviews>.//div[@class='iqitreviews-simple']</hasReviews>
             <!-- Product Page -->
-            <pPComments>//ol[@class='commentlist']/li//div[@class='description']</pPComments>              
+            <pPComments>//div[@class='comment' and @itemprop='reviewBody']</pPComments>            
         </find>
-        <remove>...</remove>
-        <remove>,</remove>
-        <remove>-</remove>
+        <remove>10ml</remove>
+        <remove>20ml</remove>
         <remove>Aroma</remove>
         <remove>Orgánico</remove>
-        <remove>10ml</remove>
-        <remove>11ml</remove>
-        <remove>20ml</remove>
-        <remove>Macerato</remove>
-        <remove>Concentrado</remove>
-        <remove>Microfiltrado</remove>
-        <remove>Stratto di Tabacco</remove>
-        <remove>Extracto de Tabaco</remove>
-        <remove>Barrique Mixture</remove>
+        <remove>Estratto Di Tobacco</remove>
+        <remove>Barrique</remove>
+        <remove>Miscela</remove>
         <remove>Elite</remove>
-        <remove>Evolution</remove>
-        <remove>Organic</remove>
         <remove>Special Blend</remove>
-
-        <page name="ORGANICOS"><![CDATA[https://www.bulevar44.com/11-aromas?q=Tipo-Aroma+Orgánico]]></page> 
+        <remove>Selezione Premium</remove>
+        
+        <removeRegex>\(.*\)</removeRegex>
+        
+        <page name="LA TABACCHERIA"><![CDATA[https://www.esmokingspain.es/tabaccheria-m-344.html?page=1&language=es]]></page>
+        <page name="LA TABACCHERIA"><![CDATA[https://www.esmokingspain.es/tabaccheria-m-344.html?page=2&language=es]]></page>
+        <page name="ADG"><![CDATA[https://www.esmokingspain.es/angolo-della-guancia-m-458.html?page=1&language=es]]></page>
+        <page name="ADG"><![CDATA[https://www.esmokingspain.es/angolo-della-guancia-m-458.html?page=2&language=es]]></page>
+        
     </shop> 
-
-    <shop name="SinHumo-Sevilla" country="spain" currency="EUR">
-        <baseUri>https://www.sinhumo-sevilla.com/</baseUri>
-        <uriRemoveStringAfter/>
-        <find>
-            <product>//article/div[@class='thumbnail-container']</product>
-            <name>.//div[@class='product-description']/h2/a</name>
-            <price>.//div[contains(@class, 'product-price-and-shipping')]/span[@class='price']</price>
-            <uri>.//a[@class='thumbnail product-thumbnail']</uri>
-            <special>.//span[contains(@class, 'discount-percentage')]</special>
-            <specialPrice>.//div[contains(@class, 'product-price-and-shipping')]/span[@class='price']</specialPrice>
-            <noStock>.//div[contains(@class, 'product-stock')]</noStock>
-            <hasReviews>.//div[@class='star-rating']</hasReviews>
-            <!-- Product Page -->
-            <pPComments>//ol[@class='commentlist']/li//div[@class='description']</pPComments>  
-        </find>
-        <remove>(Orgánico)</remove>
-        <remove>Aroma</remove>
-        <remove>by</remove>
-        <remove>10ml</remove>
-        <remove>20ml</remove>
-
-        <page name="ORGANICOS" autoincrement="?page=">https://www.sinhumo-sevilla.net/1247-aromas-y-extractos-organicos</page>
-    </shop>     
 
     <!--
     <shop name="Nomnomz" country="uk" currency="GBP">

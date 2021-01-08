@@ -218,15 +218,13 @@ public final class LoadXMLIni {
                             Element ePage = (Element) nPage;
                             lPage.setName(ePage.getAttribute("name"));
                             //miramos si la pagina es autoincrement
-                            if(!ePage.getAttribute("autoincrement").equals("")){
+                            if(ePage.getAttribute("autoincrement").equals("true")){
                                 //System.out.println(ePage.getAttribute("name"));
                                 boolean repeat = true;
                                 Integer increment = 1;
                                 while(repeat){
                                     String tempUri = ePage.getTextContent()
-                                            .concat(
-                                                    ePage.getAttribute("autoincrement")
-                                            ).concat(String.valueOf(increment));
+                                            .concat(String.valueOf(increment));
                                     lPage.setUri(tempUri);
                                     //System.out.println(ePage.getTextContent());
                                     lPage.load(); 
