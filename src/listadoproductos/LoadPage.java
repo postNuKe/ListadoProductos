@@ -203,7 +203,8 @@ public class LoadPage {
             webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
             webClient.getOptions().setCssEnabled(false);
             webClient.getOptions().setJavaScriptEnabled(false);
-            webClient.getOptions().setDownloadImages(false);            
+            webClient.getOptions().setDownloadImages(false);    
+            webClient.addRequestHeader("Accept-Language" , "es-ES");
             try {
                 HtmlPage page = webClient.getPage(uri);
                 //webClient.waitForBackgroundJavaScript(60 * 1000);

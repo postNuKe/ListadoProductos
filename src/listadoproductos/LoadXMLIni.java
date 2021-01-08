@@ -218,7 +218,7 @@ public final class LoadXMLIni {
                             Element ePage = (Element) nPage;
                             lPage.setName(ePage.getAttribute("name"));
                             //miramos si la pagina es autoincrement
-                            if(ePage.getAttribute("autoincrement") != null){
+                            if(!ePage.getAttribute("autoincrement").equals("")){
                                 //System.out.println(ePage.getAttribute("name"));
                                 boolean repeat = true;
                                 Integer increment = 1;
