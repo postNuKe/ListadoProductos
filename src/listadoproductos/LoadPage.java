@@ -30,10 +30,12 @@ import org.jsoup.Jsoup;
  * @author user
  */
 public class LoadPage {
-    //array con todos los productos de la pagina
+    //array con todos los productos de la tienda
     private static ArrayList<Product> productList = new ArrayList<>();
     //array con todas las marcas y sus equivalentes en texto
     private static ArrayList<Brand> brands = new ArrayList<Brand>();
+    //numero de productos en la uri actualmente que se esta leyendo
+    private static Integer productUriSize = 0;
     
     private static String baseUri = "";
     private static String baseName = "";
@@ -182,6 +184,14 @@ public class LoadPage {
         this.pPComments = pPComments;
     }    
     
+    /**
+     * Devuelve el numero de productos en la uri actual que se esta leyendo
+     * @return 
+     */
+    public Integer getProductUriSize(){
+        return productUriSize;
+    }
+    
     public void load() throws IOException {
         LogFactory.getFactory().setAttribute("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.NoOpLog");
         java.util.logging.Logger.getLogger("com.gargoylesoftware").setLevel(Level.OFF); 
@@ -201,9 +211,10 @@ public class LoadPage {
 
                 List<DomElement> products = page.getByXPath(findProduct);
                 System.out.println("Articulos en la pagina " + products.size());
+                productUriSize = products.size();
                 for (DomElement product : products) {
                     //brand
-                    System.out.print(getBrand(getProductName(product.getFirstByXPath(findName))));
+                    System.out.print(getBrand(getProductName(product.getFirstByXPath(findName))).getName());
 
                     var myProduct = new Product();
                     myProduct.setShopName(baseName);
@@ -274,7 +285,20 @@ public class LoadPage {
                             myProduct.setYoutubeReviews(brandProduct.getYoutubeReviews());                        
                         }  
                     }  
-
+                    /*
+                    //miramos si este producto ya esta añadido antes por si 
+                    //en la web han repetido el producto con la misma url
+                    boolean productExists = false;
+                    for (Product productInList : productList){
+                        if (productInList.equals(myProduct)){
+                            productExists = true;
+                            break;
+                        }
+                    }   
+                    if(!productExists){
+                        productList.add(myProduct);
+                    }
+                    //if(!productList.contains(myProduct))*/ 
                     productList.add(myProduct);
 
                     System.out.println(""); 
@@ -336,50 +360,29 @@ public class LoadPage {
      * @return 
      */
     public String writePrice(DomElement ePrice){  
-        String var = Text.html2text(ePrice.getTextContent()).replace(",", ".").trim();
-        
-        //Si la moneda no es el Euro, eliminar la moneda, calcular el precio
-        //en euros, y añadirle el simbolo del euro
-        if(var.contains("£")){
-            var = var.replace("£", "");
-            Float floatPrice = Float.valueOf(var);
-            //System.out.println(floatPrice);
-            Double doublePricePlus = floatPrice * currencies.get(currency);
-            //System.out.println(doublePricePlus);
-            DecimalFormat df2 = new DecimalFormat("#.##");
-            doublePricePlus = Double.valueOf(df2.format(doublePricePlus));   
-            var = doublePricePlus.toString() + " €";
-        }
-        
-        //buscamos que el precio este pegado al euro para separarlos
-        String regex = "\\d\\p{Sc}"; //cualquier moneda, \p{Sc} euro
-        //System.out.print(" precio:" + var);
-        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(var);
-        int indexEuro = 1;
-        while (matcher.find())
-        {
-            /*
-            System.out.println("+++++++++++ : " + var);
-            System.out.print("Start index: " + matcher.start());
-            System.out.print(" End index: " + matcher.end() + " ");
-            System.out.println(" : " + matcher.group());
-            */
-            
-            StringBuffer buf = new StringBuffer(var);
-            buf.replace(matcher.start() + indexEuro, matcher.end() + indexEuro - 1, " €"); 
-            var = buf.toString();
-            //System.out.println(buf);
-            indexEuro++;
-        }        
-        //si hay que añadir un plus al precio
-        System.out.print("|| price normal: " + var + " pricePlus:" + pricePlus);
-        if(pricePlus > 1.0){
-            regex = "\\d+.\\d+";
+        String var = "";
+        if(ePrice != null){
+            var = Text.html2text(ePrice.getTextContent()).replace(",", ".").trim();
+
+            //Si la moneda no es el Euro, eliminar la moneda, calcular el precio
+            //en euros, y añadirle el simbolo del euro
+            if(var.contains("£")){
+                var = var.replace("£", "");
+                Float floatPrice = Float.valueOf(var);
+                //System.out.println(floatPrice);
+                Double doublePricePlus = floatPrice * currencies.get(currency);
+                //System.out.println(doublePricePlus);
+                DecimalFormat df2 = new DecimalFormat("#.##");
+                doublePricePlus = Double.valueOf(df2.format(doublePricePlus));   
+                var = doublePricePlus.toString() + " €";
+            }
+
+            //buscamos que el precio este pegado al euro para separarlos
+            String regex = "\\d\\p{Sc}"; //cualquier moneda, \p{Sc} euro
             //System.out.print(" precio:" + var);
-            pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-            matcher = pattern.matcher(var);
-            String finalVar = "";
+            Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(var);
+            int indexEuro = 1;
             while (matcher.find())
             {
                 /*
@@ -388,21 +391,45 @@ public class LoadPage {
                 System.out.print(" End index: " + matcher.end() + " ");
                 System.out.println(" : " + matcher.group());
                 */
-                String strPrice = var.substring(matcher.start(), matcher.end());
-                //System.out.println(strPrice);
-                Float floatPrice = Float.valueOf(strPrice);
-                //System.out.println(floatPrice);
-                Double doublePricePlus = floatPrice * 1.21;
-                //System.out.println(doublePricePlus);
-                DecimalFormat df2 = new DecimalFormat("#.##");
-                doublePricePlus = Double.valueOf(df2.format(doublePricePlus));
-                //System.out.println("double : " + doublePricePlus);
 
-                finalVar += doublePricePlus.toString() + " € ";
-            }          
-            var = finalVar;
+                StringBuffer buf = new StringBuffer(var);
+                buf.replace(matcher.start() + indexEuro, matcher.end() + indexEuro - 1, " €"); 
+                var = buf.toString();
+                //System.out.println(buf);
+                indexEuro++;
+            }        
+            //si hay que añadir un plus al precio
+            System.out.print("|| price normal: " + var + " pricePlus:" + pricePlus);
+            if(pricePlus > 1.0){
+                regex = "\\d+.\\d+";
+                //System.out.print(" precio:" + var);
+                pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+                matcher = pattern.matcher(var);
+                String finalVar = "";
+                while (matcher.find())
+                {
+                    /*
+                    System.out.println("+++++++++++ : " + var);
+                    System.out.print("Start index: " + matcher.start());
+                    System.out.print(" End index: " + matcher.end() + " ");
+                    System.out.println(" : " + matcher.group());
+                    */
+                    String strPrice = var.substring(matcher.start(), matcher.end());
+                    //System.out.println(strPrice);
+                    Float floatPrice = Float.valueOf(strPrice);
+                    //System.out.println(floatPrice);
+                    Double doublePricePlus = floatPrice * 1.21;
+                    //System.out.println(doublePricePlus);
+                    DecimalFormat df2 = new DecimalFormat("#.##");
+                    doublePricePlus = Double.valueOf(df2.format(doublePricePlus));
+                    //System.out.println("double : " + doublePricePlus);
+
+                    finalVar += doublePricePlus.toString() + " € ";
+                }          
+                var = finalVar;
+            }
+            //System.out.print(" || " + ePrice.getVisibleText());    
         }
-        //System.out.print(" || " + ePrice.getVisibleText());    
         System.out.println(" || " + var);
         return var;
     }

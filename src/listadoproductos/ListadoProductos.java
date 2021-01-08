@@ -65,8 +65,8 @@ public class ListadoProductos {
         arguments.put("localListado", args[0]);
         arguments.put("emailUser", args[1]);
         arguments.put("emailPass", args[2]);
-        arguments.put("XMLEmails", args[3]);
-        if(args.length > 4){//si esta en produccion
+        if(args.length > 3){//si esta en produccion
+            arguments.put("XMLEmails", args[3]);
             arguments.put("remoteListado", args[4]); //args[4]
             arguments.put("FTPServer", args[5]); //args[5]
             arguments.put("FTPUser", args[6]); //args[6]
@@ -127,7 +127,9 @@ public class ListadoProductos {
             m.marshal(listado, new File(localPath.concat(LISTADO_PRODUCTOS_NEW_SPECIAL)));
             
             //mandamos el correo
-            if(compareXML.getNewProducts().size() > 0 || compareXML.getSpecialProducts().size() > 0){
+            if((compareXML.getNewProducts().size() > 0 
+                    || compareXML.getSpecialProducts().size() > 0)
+                    && !arguments.get("XMLEmails").equals("")){
                 ReadEmailConfig email = new ReadEmailConfig(arguments.get("XMLEmails"));        
                 SendEmailNewsByGmail sendEmail = new SendEmailNewsByGmail(
                         arguments.get("emailUser") //gmail_user_without_@gmail

@@ -217,11 +217,35 @@ public final class LoadXMLIni {
                         if (nShop.getNodeType() == Node.ELEMENT_NODE) {
                             Element ePage = (Element) nPage;
                             lPage.setName(ePage.getAttribute("name"));
-                            //System.out.println(ePage.getAttribute("name"));
-                            lPage.setUri(ePage.getTextContent());
-                            //System.out.println(ePage.getTextContent());
-                            lPage.load(); 
-                            listPages.add(ePage.getTextContent());
+                            //miramos si la pagina es autoincrement
+                            if(ePage.getAttribute("autoincrement") != null){
+                                //System.out.println(ePage.getAttribute("name"));
+                                boolean repeat = true;
+                                Integer increment = 1;
+                                while(repeat){
+                                    String tempUri = ePage.getTextContent()
+                                            .concat(
+                                                    ePage.getAttribute("autoincrement")
+                                            ).concat(String.valueOf(increment));
+                                    lPage.setUri(tempUri);
+                                    //System.out.println(ePage.getTextContent());
+                                    lPage.load(); 
+                                    //si no ha encontrado mas productos pues
+                                    //paramos el while                                    
+                                    if(lPage.getProductUriSize() == 0){
+                                        repeat = false;
+                                    }else{
+                                        listPages.add(tempUri);  
+                                        increment++;
+                                    }                                    
+                                }
+                            }else{
+                                //System.out.println(ePage.getAttribute("name"));
+                                lPage.setUri(ePage.getTextContent());
+                                //System.out.println(ePage.getTextContent());
+                                lPage.load(); 
+                                listPages.add(ePage.getTextContent());
+                            }
                         }
                     }
                     productList.addAll(lPage.getProductList());
