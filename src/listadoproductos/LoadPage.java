@@ -205,7 +205,7 @@ public class LoadPage {
             webClient.getOptions().setJavaScriptEnabled(false);
             webClient.getOptions().setDownloadImages(false);    
             webClient.addRequestHeader("Accept-Language" , "es-ES");
-            try {
+            //try { //tenia el try catch puesto para que no parara la ejecucion de la app cuando daba algun error en las webs, pero me di cuenta que entonces la siguiente ejecucion correcta enviaba emails con novedades cuando no lo son
                 HtmlPage page = webClient.getPage(uri);
                 //webClient.waitForBackgroundJavaScript(60 * 1000);
                 System.out.println(page.getBaseURI());
@@ -304,13 +304,13 @@ public class LoadPage {
 
                     System.out.println(""); 
                 }     
-            } catch (IOException e) {
+            //} catch (IOException e) {
                 /*me dio un error de conexion ssl en una web asi que mejor 
                 esto para no interrumpir la ejecucion completa de la app
                 */
-                System.out.println("Error: " + e.getMessage());
-                e.printStackTrace();
-            }
+            //    System.out.println("Error: " + e.getMessage());
+            //    e.printStackTrace();
+            //}
                    
  
         }           
@@ -476,20 +476,6 @@ public class LoadPage {
      * @return 
      */
     public String removeStrings(String str){     
-        
-        for( String oneItem : rStrings ) {
-            //str = str.replace(oneItem, "");
-            str = Pattern.compile(
-                        oneItem, 
-                        Pattern.LITERAL | Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE)
-                        .matcher(str)
-                        .replaceAll(Matcher.quoteReplacement(""));             
-        }
-        //eliminamos cadenas con expresiones regulares
-        for( String oneItem : rRegexStrings ) {
-            //str = str.replace(oneItem, "");
-            str = str.replaceAll(oneItem, "");
-        }
         //Eliminamos tambien las marcas
         for (Brand brand : this.brands) {
             //System.out.print(brand.getName() + " : ");
@@ -505,7 +491,22 @@ public class LoadPage {
                 //System.out.print(" @@ " + equals);
             }
             //System.out.println("");
-        }           
+        }         
+        //cadenas remove de la tienda
+        for( String oneItem : rStrings ) {
+            //str = str.replace(oneItem, "");
+            str = Pattern.compile(
+                        oneItem, 
+                        Pattern.LITERAL | Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE)
+                        .matcher(str)
+                        .replaceAll(Matcher.quoteReplacement(""));             
+        }
+        //eliminamos cadenas con expresiones regulares
+        for( String oneItem : rRegexStrings ) {
+            //str = str.replace(oneItem, "");
+            str = str.replaceAll(oneItem, "");
+        }
+          
         
         return str;
     }
